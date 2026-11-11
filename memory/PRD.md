@@ -1,0 +1,27 @@
+# PRD — Aangan Studio (Interiors landing page)
+
+## Original problem statement
+"https://www.nobroker.in/interiors/ clone this as same"
+
+## Choices
+- Brand: Aangan Studio (own brand, original logo/favicon, original copy & stock photos — no NoBroker assets)
+- Consultation form: thank-you message only (no storage)
+- Extras: cost estimator + room gallery (defaults)
+
+## Architecture
+React (CRA) frontend only. framer-motion, lenis, shadcn accordion/dialog, sonner. Content in src/data/content.js. No backend use.
+
+## Implemented (2026-11-11)
+- Sticky nav + mobile menu, hero with masked headline reveal, parallax image, 3D tilt consult form
+- Editorial marquee, trending ideas carousel, interactive cost estimator (BHK/tier/rooms, INR lakhs)
+- Projects with city filter, room tabbed gallery, featured story (clip-path scroll reveal), styles + categories
+- Vaastu banner, Why-us bento, experience studios, how it works, reviews, FAQ, footer
+- Book dialog reused from all CTAs; form validation + thank-you state
+
+## Placeholders
+Studio addresses, review texts, project names/ratings, idea counts, featured story, estimator rates, social links
+
+## Backlog
+- P1: Save leads to an admin list / email alerts
+- P1: Real projects, reviews and studio addresses
+- P2: Project detail pages, style finder quiz, WhatsApp button

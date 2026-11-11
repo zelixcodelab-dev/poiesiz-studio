@@ -1,0 +1,25 @@
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+
+.font-display { font-family: "Outfit", sans-serif; }
+.font-body { font-family: "Plus Jakarta Sans", sans-serif; }
+.font-serif-it { font-family: "Fraunces", serif; }
+.font-mono { font-family: "JetBrains Mono", monospace; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 60s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+
+::selection { background: #C85A32; color: #fff; }
+
+.grain { position: relative; }
+.grain::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60; opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }

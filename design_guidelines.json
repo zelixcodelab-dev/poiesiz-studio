@@ -1,0 +1,150 @@
+{
+  "project_name": "Aangan Studio - Architecture & Interior Design Landing Page",
+  "brand": {
+    "name": "Aangan Studio",
+    "tagline": "Bringing the Soul of the Courtyard to Modern Living",
+    "ethos": "Aangan represents the sanctuary of Indian homes—the central open courtyard where warmth, light, air, and family life converge. Aangan Studio blends contemporary minimalism with timeless artisanal warmth.",
+    "logo_concept": "Clean architectural icon: a geometric overlapping square with a warm central courtyard diamond dot (SVG string included in design assets)."
+  },
+  "typography": {
+    "heading_font": "Outfit, sans-serif",
+    "body_font": "Plus Jakarta Sans, sans-serif",
+    "mono_font": "JetBrains Mono, monospace",
+    "heading_scale": {
+      "hero_h1": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]",
+      "section_h2": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
+      "card_h3": "text-xl sm:text-2xl font-semibold",
+      "sub_h4": "text-lg sm:text-xl font-medium"
+    }
+  },
+  "colors": {
+    "archetype": "ORGANIC & EARTHY WITH SWISS PRECISION",
+    "primary": "#C85A32",
+    "primary_foreground": "#FFFFFF",
+    "primary_hover": "#B24C28",
+    "secondary": "#2D3B36",
+    "secondary_foreground": "#FBF9F5",
+    "accent_gold": "#D4A359",
+    "background": "#FBF9F5",
+    "surface_card": "#FFFFFF",
+    "surface_muted": "#F3EFEA",
+    "text_dark": "#1A1918",
+    "text_muted": "#6E6B65",
+    "border_subtle": "#E5DEC9",
+    "glass_bg": "rgba(251, 249, 245, 0.85)",
+    "dark_footer": "#141C18"
+  },
+  "sections_in_order": [
+    {
+      "id": "nav",
+      "name": "Sticky Header Navigation",
+      "features": "Aangan Studio SVG Logo, Links (Trending Ideas, Estimator, Projects, Rooms, Experience Centres, FAQs), 'Book Free Consultation' CTA button opening modal or scrolling to hero form.",
+      "sticky": true,
+      "z_index": "z-50"
+    },
+    {
+      "id": "hero",
+      "name": "Hero Banner with Kinetic Reveal & Form",
+      "features": "Kinetic masked line-by-line headline reveal with Framer Motion, subtle 3D tilt/parallax image container, quick consultation form (Name, Mobile Phone, City, Property Type [1BHK, 2BHK, 3BHK, 4BHK, Villa]), 3 USP badges ('Personalised Designs', 'Transparent Pricing', '30-Year Warranty')."
+    },
+    {
+      "id": "trending_ideas",
+      "name": "Trending Ideas Carousel",
+      "features": "Interactive Embla Carousel / Motion slider featuring curated interior aesthetics (Scandinavian Minimal, Indian Contemporary, Japandi Oasis, Classic Neo-Traditional) with image hover zoom & view counters."
+    },
+    {
+      "id": "estimator_teaser",
+      "name": "Cost Estimator Teaser Banner",
+      "features": "Quick visual hook showing '3-Minute Interior Cost Calculator' with quick BHK selector leading straight into the interactive widget."
+    },
+    {
+      "id": "interactive_cost_estimator",
+      "name": "Interactive BHK & Package Cost Estimator",
+      "features": "Step-by-step interactive calculator: BHK selection (1 BHK, 2 BHK, 3 BHK, 4 BHK), Package tier (Economy, Premium, Luxury), Room scope toggles (Living Room, Modular Kitchen, Master Bedroom, Guest Bedroom, Dining Area), instant real-time live estimated price range display in INR (₹) with breakdown breakdown list and 'Get Detailed PDF Breakdown' trigger."
+    },
+    {
+      "id": "recent_projects",
+      "name": "Recent Completed Projects",
+      "features": "Filterable grid by City (Bangalore, Hyderabad, Pune, Mumbai) & Style with project rating (4.8 - 5.0 stars), project name, scope summary, and high-res transformed images."
+    },
+    {
+      "id": "ideas_by_room",
+      "name": "Discover Ideas by Room (Tabbed Gallery)",
+      "features": "Tabbed gallery switching between Master Bedroom, Living & Dining, Modular Kitchen, Guest Bedroom, and Balcony/Dining with design count badges and full-screen view."
+    },
+    {
+      "id": "featured_testimonial",
+      "name": "Featured Client Story & Video Tour",
+      "features": "In-depth video case study card with before/after comparison slider, client photo, direct quote, and property specifications."
+    },
+    {
+      "id": "ideas_by_style",
+      "name": "Discover Ideas by Style",
+      "features": "Aesthetic style cards (Tropical Urban, Indian Fusion, Modern Classical, Minimalism) with moodboard color chips and count labels."
+    },
+    {
+      "id": "vaastu_guide",
+      "name": "Vaastu & Harmonious Living Guide Banner",
+      "features": "Special downloadable Vaastu handbook section with 1:1 expert designer consultation promise."
+    },
+    {
+      "id": "why_choose_us",
+      "name": "Why Choose Aangan Studio (Bento Grid)",
+      "features": "Asymmetric Bento Grid showcasing 5 key differentiators: 1. Dedicated Project Architect & Team, 2. End-to-End In-House Execution, 3. Tailored Lifestyle Personalisation, 4. No Hidden Costs Guarantee, 5. 250+ Quality Checks with DuraBuild Technology."
+    },
+    {
+      "id": "experience_centres",
+      "name": "Experience Centres",
+      "features": "Interactive cards for physical studios (Bengaluru Whitefield, Bengaluru HSR Layout, Pune Wakad, Hyderabad Kondapur, Mumbai Bandra) with full addresses, opening hours, and 'Schedule Experience Visit' modal launcher."
+    },
+    {
+      "id": "how_it_works",
+      "name": "How It Works (4-Step Process)",
+      "features": "Visual timeline: Step 1: Free Consultation & 3D Walkthrough -> Step 2: Booking & Token -> Step 3: Material Selection & Custom Crafting -> Step 4: On-Site Precision Installation."
+    },
+    {
+      "id": "reviews_marquee",
+      "name": "Customer Reviews Marquee",
+      "features": "Slow editorial Infinite Marquee featuring verified client reviews with client avatars, city badges, and star ratings."
+    },
+    {
+      "id": "faq_accordion",
+      "name": "Frequently Asked Questions",
+      "features": "Shadcn Radix Accordion answering top customer queries regarding project timelines, warranty terms, payment milestones, customization, and materials used."
+    },
+    {
+      "id": "footer",
+      "name": "Comprehensive Footer",
+      "features": "Dark elegant background (#141C18), city service links (Interior Designers in Bangalore, Hyderabad, Pune, Mumbai, Delhi NCR), category quick links, social media badges, copyright notice, and back-to-top button."
+    }
+  ],
+  "image_urls": {
+    "hero_bg": "https://images.unsplash.com/photo-1724582586529-62622e50c0b3?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "hero_accent": "https://images.unsplash.com/photo-1724582586458-a51791349977?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "trending_1": "https://images.unsplash.com/photo-1724582586495-d050726cf354?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "trending_2": "https://images.unsplash.com/photo-1760072513457-651955c7074d?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "trending_3": "https://images.unsplash.com/photo-1686023858216-4f54c853acf2?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "trending_4": "https://images.unsplash.com/photo-1757344454333-cc666252e596?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "kitchen_1": "https://images.unsplash.com/photo-1758565811352-a439bd6f956e?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "kitchen_2": "https://images.unsplash.com/photo-1759147960461-b74a7e9a75d4?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "bedroom_1": "https://images.unsplash.com/photo-1696762932825-2737db830bbe?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "bedroom_2": "https://images.unsplash.com/photo-1638840992956-142399e7e2df?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "bedroom_3": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "living_1": "https://images.unsplash.com/photo-1564078516393-cf04bd966897?crop=entropy&cs=srgb&fm=jpg&q=85"
+  },
+  "svg_logo_mark": "<svg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='2' y='2' width='32' height='32' rx='8' fill='#C85A32'/><path d='M10 18L18 10L26 18L18 26L10 18Z' fill='#FBF9F5'/><circle cx='18' cy='18' r='3' fill='#D4A359'/></svg>",
+  "instructions_to_main_agent": [
+    "Ensure all interactive elements (buttons, inputs, BHK selectors, room toggles, accordion triggers, tab buttons) contain meaningful kebab-case data-testid attributes.",
+    "Use Lenis smooth scroll for momentum scrolling feel.",
+    "Form submission for Consultation or Vaastu guide must display an elegant custom Toast (Sonner) with thank-you feedback.",
+    "The cost estimator must react immediately to BHK, package tier, and room scope toggles, recalculating price ranges live in INR (₹ Lakhs).",
+    "Ensure 390px mobile responsiveness with touch-friendly targets (min 44px height)."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "DO NOT use generic centered layouts or unstyled default components.",
+    "Always set explicit hover text states (e.g., hover:bg-primary hover:text-white).",
+    "Never use dark color gradients.",
+    "Keep typography high-contrast against background (#FBF9F5).",
+    "All components must be pure JS/JSX in /src/ components."
+  ]
+}
