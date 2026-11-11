@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Lenis from "lenis";
 import { Toaster } from "sonner";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import "@/App.css";
 import { Nav } from "./components/site/Nav";
 import { Hero } from "./components/site/Hero";
@@ -19,10 +20,32 @@ import { Reviews } from "./components/site/Reviews";
 import { Faq } from "./components/site/Faq";
 import { Footer } from "./components/site/Footer";
 import { BookDialog } from "./components/site/BookDialog";
+import PriceCalculator from "./pages/PriceCalculator";
 
-function App() {
+const Home = ({ onBook }) => (
+  <main>
+    <Hero />
+    <Marquee />
+    <Trending />
+    <Estimator onBook={onBook} />
+    <Projects />
+    <Rooms />
+    <Featured />
+    <Styles />
+    <Vaastu onBook={onBook} />
+    <WhyUs />
+    <Centres onBook={onBook} />
+    <HowItWorks />
+    <Reviews />
+    <Faq onBook={onBook} />
+  </main>
+);
+
+const Shell = () => {
   const [open, setOpen] = useState(false);
   const book = () => setOpen(true);
+  const { pathname, hash } = useLocation();
+  const home = pathname === "/";
 
   useEffect(() => {
     const lenis = new Lenis({ duration: 1.15, anchors: { offset: -70 } });
@@ -32,29 +55,32 @@ function App() {
     return () => { cancelAnimationFrame(id); lenis.destroy(); };
   }, []);
 
+  useEffect(() => {
+    if (!hash) { window.scrollTo(0, 0); return undefined; }
+    const t = setTimeout(() => document.querySelector(hash)?.scrollIntoView(), 120);
+    return () => clearTimeout(t);
+  }, [pathname, hash]);
+
   return (
     <div className="grain bg-[#FBF9F5] font-body text-[#1A1918]">
-      <Nav onBook={book} />
-      <main>
-        <Hero />
-        <Marquee />
-        <Trending />
-        <Estimator onBook={book} />
-        <Projects />
-        <Rooms />
-        <Featured />
-        <Styles />
-        <Vaastu onBook={book} />
-        <WhyUs />
-        <Centres onBook={book} />
-        <HowItWorks />
-        <Reviews />
-        <Faq onBook={book} />
-      </main>
-      <Footer onBook={book} />
+      <Nav onBook={book} home={home} />
+      <Routes>
+        <Route path="/" element={<Home onBook={book} />} />
+        <Route path="/price-calculator" element={<PriceCalculator onBook={book} />} />
+        <Route path="*" element={<Home onBook={book} />} />
+      </Routes>
+      <Footer onBook={book} home={home} />
       <BookDialog open={open} onOpenChange={setOpen} />
       <Toaster position="top-center" richColors />
     </div>
+  );
+};
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Shell />
+    </BrowserRouter>
   );
 }
 

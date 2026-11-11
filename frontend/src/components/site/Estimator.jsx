@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Check, Calculator } from "lucide-react";
 import { Reveal, Eyebrow } from "./Motion";
 
@@ -61,6 +62,7 @@ export const Estimator = ({ onBook }) => {
             </ul>
             <p className="mt-4 text-xs text-[#6E6B65]">Indicative range only. Your designer shares an exact, itemised quote after measuring your home.</p>
             <button onClick={onBook} className="mt-6 w-full rounded-full bg-[#C85A32] py-3.5 font-medium text-white transition-colors duration-300 hover:bg-[#B24C28]" data-testid="estimator-cta-btn">Get My Exact Quote</button>
+            <Link to="/price-calculator" className="mt-3 block text-center text-sm font-medium text-[#C85A32] underline-offset-4 hover:underline" data-testid="estimator-full-calc-link">Open the detailed price calculator →</Link>
           </div>
         </Reveal>
       </div>

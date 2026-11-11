@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import { ArrowUp, Instagram, Facebook, Linkedin, Youtube } from "lucide-react";
 import { FOOTER_CITIES } from "../../data/content";
 import { Logo } from "./Logo";
 
-export const Footer = ({ onBook }) => (
+export const Footer = ({ onBook, home = true }) => (
   <footer className="bg-[#141C18] pt-20 text-[#D9D3C7]" data-testid="site-footer">
     <div className="mx-auto max-w-[1400px] px-5 md:px-10">
       <div className="flex flex-col gap-8 border-b border-white/10 pb-14 md:flex-row md:items-end md:justify-between">
@@ -18,11 +19,12 @@ export const Footer = ({ onBook }) => (
         </div>
         <div className="md:col-span-5">
           <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-[#D4A359]">Interior designers in</p>
-          <div className="grid grid-cols-2 gap-2 text-sm">{FOOTER_CITIES.map((c) => <a key={c} href="#consult" className="transition-colors duration-300 hover:text-white" data-testid={`footer-city-${c.toLowerCase()}`}>{c}</a>)}</div>
+          <div className="grid grid-cols-2 gap-2 text-sm">{FOOTER_CITIES.map((c) => <a key={c} href={home ? "#consult" : "/#consult"} className="transition-colors duration-300 hover:text-white" data-testid={`footer-city-${c.toLowerCase()}`}>{c}</a>)}</div>
         </div>
         <div className="md:col-span-3">
           <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-[#D4A359]">Explore</p>
-          <div className="flex flex-col gap-2 text-sm">{[["Trending ideas", "#ideas"], ["Cost estimator", "#estimator"], ["Projects", "#projects"], ["Studios", "#studios"], ["FAQs", "#faq"]].map(([l, h]) => <a key={h} href={h} className="transition-colors duration-300 hover:text-white" data-testid={`footer-link-${h.slice(1)}`}>{l}</a>)}</div>
+          <div className="flex flex-col gap-2 text-sm"><Link to="/price-calculator" className="transition-colors duration-300 hover:text-white" data-testid="footer-link-calculator">Price calculator</Link>
+            {[["Trending ideas", "#ideas"], ["Projects", "#projects"], ["Studios", "#studios"], ["FAQs", "#faq"]].map(([l, h]) => <a key={h} href={home ? h : `/${h}`} className="transition-colors duration-300 hover:text-white" data-testid={`footer-link-${h.slice(1)}`}>{l}</a>)}</div>
         </div>
       </div>
       <div className="flex items-center justify-between border-t border-white/10 py-6 text-xs text-[#BFB8AB]">
