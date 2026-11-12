@@ -31,3 +31,4 @@ export const ContentProvider = ({ children }) => {
 export const useSite = () => useContext(Ctx);
 export const useContent = (key) => useContext(Ctx).data[key] ?? DEFAULTS[key];
 export const list = (v) => (Array.isArray(v) ? v : []);
+export const slug = (s) => String(s ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

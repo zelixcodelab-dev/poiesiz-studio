@@ -15,7 +15,8 @@ from pydantic import BaseModel, Field
 logger = logging.getLogger(__name__)
 JWT_ALGORITHM = "HS256"
 CONTENT_KEYS = {"sections", "hero", "marquee", "services", "projects", "featured", "trending", "rooms", "styles",
-                "clients", "why", "ongoing", "steps", "faqs", "contact", "footer", "form"}
+                "clients", "why", "ongoing", "steps", "faqs", "contact", "footer", "form", "pricing"}
+ENQUIRY_STATUSES = {"new", "called", "closed", "archived"}
 IMAGE_TYPES = {"image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "image/gif": "gif", "image/svg+xml": "svg"}
 STORAGE_BASE = (os.environ.get("INTEGRATION_PROXY_URL") or "").strip() or "https://integrations.emergentagent.com"
 STORAGE_URL = STORAGE_BASE.rstrip("/") + "/objstore/api/v1/storage"
@@ -83,6 +84,24 @@ class PasswordIn(BaseModel):
 
 class ContentIn(BaseModel):
     data: Any
+
+
+class EnquiryIn(BaseModel):
+    name: str = Field(min_length=2, max_length=80)
+    phone: str = Field(pattern=r"^[6-9]\d{9}$")
+    city: str = Field(min_length=1, max_length=60)
+    type: str = Field(default="", max_length=40)
+    source: str = Field(default="", max_length=40)
+
+
+class EnquiryPatch(BaseModel):
+    status: str | None = None
+    note: str | None = Field(default=None, max_length=1000)
+
+
+def enquiry_out(d: dict) -> dict:
+    return {"id": str(d["_id"]), "name": d["name"], "phone": d["phone"], "city": d["city"], "type": d.get("type", ""),
+            "source": d.get("source", ""), "status": d.get("status", "new"), "note": d.get("note", ""), "created_at": d["created_at"]}
 
 
 async def seed_admin(db):
@@ -210,5 +229,28 @@ def build_router(db) -> APIRouter:
             raise HTTPException(status_code=404, detail="File not found")
         data, ctype = await asyncio.to_thread(get_object, path)
         return Response(content=data, media_type=record.get("content_type") or ctype, headers={"Cache-Control": "public, max-age=31536000"})
+
+    @r.post("/enquiries")
+    async def create_enquiry(body: EnquiryIn):
+        doc = {**body.model_dump(), "name": body.name.strip(), "status": "new", "note": "", "created_at": datetime.now(timezone.utc).isoformat()}
+        res = await db.enquiries.insert_one(doc)
+        return {"id": str(res.inserted_id), "ok": True}
+
+    @r.get("/enquiries")
+    async def list_enquiries(user: dict = Depends(current_admin)):
+        docs = await db.enquiries.find({"status": {"$ne": "archived"}}).sort("created_at", -1).to_list(1000)
+        return [enquiry_out(d) for d in docs]
+
+    @r.patch("/enquiries/{eid}")
+    async def update_enquiry(eid: str, body: EnquiryPatch, user: dict = Depends(current_admin)):
+        upd = {k: v for k, v in body.model_dump().items() if v is not None}
+        if "status" in upd and upd["status"] not in ENQUIRY_STATUSES:
+            raise HTTPException(status_code=400, detail="Invalid status")
+        if not ObjectId.is_valid(eid):
+            raise HTTPException(status_code=404, detail="Not found")
+        doc = await db.enquiries.find_one_and_update({"_id": ObjectId(eid)}, {"$set": upd}, return_document=True)
+        if not doc:
+            raise HTTPException(status_code=404, detail="Not found")
+        return enquiry_out(doc)
 
     return r

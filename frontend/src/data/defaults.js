@@ -1,4 +1,5 @@
 import { IMG, CITIES, PROPERTY_TYPES, USPS, TRENDING, PROJECTS, ROOMS, STYLES, CATEGORIES, WHY, STEPS, FAQS, FOOTER_CITIES, ONGOING, SERVICES, CONTACT } from "./content";
+import { TIERS, ROOM_ITEMS, KITCHEN_SHAPES, ADDONS } from "../lib/pricing";
 
 export const SECTION_LABELS = {
   marquee: "Scrolling words strip", services: "Services", projects: "Projects", featured: "Featured project",
@@ -43,4 +44,8 @@ export const DEFAULTS = {
   contact: { eyebrow: "Contact us", title: "Visit our office in Palarivattom", sub: "Drop by, call or write to us to discuss your home, office or retail project.", ...CONTACT, mapQuery: "Pallissery Road, Palarivattom, Ernakulam 682025" },
   footer: { headline: "Let's start with a", headlineAccent: "conversation.", tagline: "Modern & custom interiors. Turnkey design and execution, based in Kochi, Kerala.", cities: FOOTER_CITIES },
   form: { cities: CITIES, types: PROPERTY_TYPES },
+  pricing: {
+    tiers: TIERS, rooms: ROOM_ITEMS, kitchenShapes: KITCHEN_SHAPES, addons: ADDONS,
+    note: "Indicative range only. Our team confirms the final price after measuring your space.",
+  },
 };

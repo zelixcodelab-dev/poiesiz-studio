@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, RotateCcw } from "lucide-react";
-import { BHK_DEFAULTS, TIERS, estimate } from "../lib/pricing";
+import { estimate } from "../lib/pricing";
+import { usePricing } from "../lib/usePricing";
 import { HomeStep, RoomsStep, FinishStep } from "../components/calc/Steps";
 import { ResultStep } from "../components/calc/Result";
 import { Summary } from "../components/calc/Summary";
 import { MaskLines } from "../components/site/Motion";
 
 const LABELS = ["Home", "Rooms", "Finish", "Estimate"];
-const initial = () => ({ bhk: 2, area: BHK_DEFAULTS[2].area, rooms: { ...BHK_DEFAULTS[2].rooms }, shape: "l", tier: "premium", addons: { ceiling: true, painting: true, lighting: false, electrical: false } });
+const initial = () => ({ bhk: 2, area: 1050, rooms: { living: 1, kitchen: 1, master: 1, bedroom: 1, dining: 1, bath: 2, pooja: 1, study: 0 }, shape: "l", tier: "premium", addons: { ceiling: true, painting: true, lighting: false, electrical: false } });
 
 export default function PriceCalculator({ onBook }) {
   const [step, setStep] = useState(0);
   const [s, setS] = useState(initial);
-  const tier = TIERS.find((t) => t.key === s.tier) ?? TIERS[1];
-  const est = estimate(s, tier.mult);
+  const { TIERS, cfg } = usePricing();
+  const tier = TIERS.find((t) => t.key === s.tier) ?? TIERS[0] ?? { label: "", mult: 1 };
+  const est = estimate(s, tier.mult, cfg);
 
   useEffect(() => { document.title = "Interior Price Calculator | POIESIZ Interiors"; return () => { document.title = "POIESIZ Interiors | Modern & Custom Interiors, Kochi"; }; }, []);
   useEffect(() => { window.scrollTo(0, 0); }, [step]);

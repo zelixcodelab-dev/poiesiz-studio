@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
-import { TIERS, estimate, lakh } from "../../lib/pricing";
+import { estimate, lakh } from "../../lib/pricing";
+import { usePricing } from "../../lib/usePricing";
 import { StepTitle } from "./Parts";
 
 export const ResultStep = ({ s, onBook, setS }) => {
-  const all = TIERS.map((t) => ({ ...t, est: estimate(s, t.mult) }));
-  const cur = all.find((t) => t.key === s.tier) ?? all[1];
+  const { TIERS, cfg, note } = usePricing();
+  const all = TIERS.map((t) => ({ ...t, est: estimate(s, t.mult, cfg) }));
+  const cur = all.find((t) => t.key === s.tier) ?? all[0] ?? { label: "", est: { total: 0, low: 0, high: 0 } };
   const max = Math.max(...all.map((t) => t.est.high), 1);
   return (
     <div data-testid="calc-result-step">
@@ -13,7 +15,7 @@ export const ResultStep = ({ s, onBook, setS }) => {
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#FEBD1C]">Estimated range</p>
         <p className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-6xl" data-testid="calc-result-total">{cur.est.total ? `${lakh(cur.est.low)} – ${lakh(cur.est.high)}` : "₹0"}</p>
         <div className="mt-10 space-y-5">
-          <p className="text-sm text-[#D9D3C7]">Same home, all three finish levels</p>
+          <p className="text-sm text-[#D9D3C7]">Same home, every finish level</p>
           {all.map((t, i) => (
             <button key={t.key} type="button" onClick={() => setS({ ...s, tier: t.key })} className="block w-full text-left" data-testid={`calc-compare-${t.key}`}>
               <div className="mb-2 flex justify-between text-sm"><span className={t.key === s.tier ? "text-white" : "text-[#BFB8AB]"}>{t.label}</span><span className="font-mono text-[#D9D3C7]">{lakh(t.est.low)} – {lakh(t.est.high)}</span></div>
@@ -28,7 +30,7 @@ export const ResultStep = ({ s, onBook, setS }) => {
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <button onClick={onBook} className="flex-1 rounded-full bg-[#FEBD1C] py-4 font-medium text-white transition-colors duration-300 hover:bg-[#F0AC00]" data-testid="calc-result-book-btn">Get my exact, itemised quote</button>
       </div>
-      <p className="mt-4 text-xs text-[#6E6B65]">Indicative range based on sample rates. Your designer confirms the final price after measuring your home.</p>
+      <p className="mt-4 text-xs text-[#6E6B65]">{note}</p>
     </div>
   );
 };

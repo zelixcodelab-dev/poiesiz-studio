@@ -18,7 +18,8 @@ export const SCHEMA = [
     { name: "filters", label: "Filter buttons (must match project Type or Status)", type: "strings" },
     { name: "items", label: "Projects", type: "list", itemLabel: "name", fields: [
       t("name", "Project name"), t("type", "Type (Residence, Retail, Office, Commercial)"), t("label", "Subtitle"),
-      t("place", "Location"), t("status", "Status (Completed / On-going)"), t("img", "Photo", "image"),
+      t("place", "Location"), t("status", "Status (Completed / On-going)"), t("img", "Cover photo", "image"),
+      t("description", "Project page description", "textarea"), { name: "gallery", label: "Project page photo gallery", type: "images" },
     ] },
   ] },
   { key: "featured", label: "Featured project", fields: [
@@ -69,4 +70,17 @@ export const SCHEMA = [
     { name: "cities", label: "Areas served", type: "strings" },
   ] },
   { key: "form", label: "Booking form options", fields: [{ name: "cities", label: "Cities", type: "strings" }, { name: "types", label: "Property types", type: "strings" }] },
+  { key: "pricing", label: "Price calculator rates", hint: "All room and fixed prices are in lakhs (₹1L = ₹1,00,000). Multipliers: 1 = base price, 1.6 = 60% more.", fields: [
+    { name: "tiers", label: "Finish levels", type: "list", itemLabel: "label", fields: [
+      t("label", "Name"), t("mult", "Price multiplier (e.g. 1, 1.6, 2.5)"), t("note", "Small tagline"), { name: "features", label: "What's included", type: "strings" }, t("key", "ID (keep unique, no spaces)"),
+    ] },
+    { name: "rooms", label: "Rooms", type: "list", itemLabel: "label", fields: [
+      t("label", "Room name"), t("hint", "Short description"), t("base", "Base price per room (lakhs)"), t("max", "Max quantity"), t("key", "ID (keep 'kitchen' for the kitchen)"),
+    ] },
+    { name: "kitchenShapes", label: "Kitchen layouts", type: "list", itemLabel: "label", fields: [t("label", "Layout name"), t("mult", "Price multiplier"), t("key", "ID")] },
+    { name: "addons", label: "Add-ons", type: "list", itemLabel: "label", fields: [
+      t("label", "Name"), t("pricePerSqft", "Price per sq ft (₹) — leave empty if fixed price"), t("flatLakh", "Fixed price (lakhs) — leave empty if per sq ft"), t("key", "ID"),
+    ] },
+    t("note", "Note under the estimate", "textarea"),
+  ] },
 ];

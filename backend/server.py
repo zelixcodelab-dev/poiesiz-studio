@@ -34,6 +34,7 @@ INDEXES: dict[str, list[IndexModel]] = {
     "login_attempts": [IndexModel([("identifier", ASCENDING)], name="identifier")],
     "site_content": [IndexModel([("key", ASCENDING)], name="key", unique=True)],
     "files": [IndexModel([("storage_path", ASCENDING)], name="storage_path")],
+    "enquiries": [IndexModel([("created_at", DESCENDING)], name="created_desc"), IndexModel([("status", ASCENDING)], name="status")],
 }
 
 

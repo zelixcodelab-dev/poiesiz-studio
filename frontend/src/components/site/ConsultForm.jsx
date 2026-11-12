@@ -2,6 +2,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { useContent, list } from "../../lib/content";
+import { api, errText } from "../../lib/api";
 
 const field = "h-12 w-full rounded-xl border border-[#E5DEC9] bg-white px-4 text-[15px] text-[#1A1918] outline-none transition-colors duration-300 placeholder:text-[#8E8A82] focus:border-[#8A6200]";
 
@@ -13,11 +14,20 @@ export const ConsultForm = ({ id = "hero" }) => {
   const [done, setDone] = useState(false);
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
-  const submit = (e) => {
+  const [busy, setBusy] = useState(false);
+  const submit = async (e) => {
     e.preventDefault();
     if (form.name.trim().length < 2) return toast.error("Please enter your name");
     if (!/^[6-9]\d{9}$/.test(form.phone)) return toast.error("Please enter a valid 10-digit mobile number");
     if (!form.city) return toast.error("Please choose your city");
+    setBusy(true);
+    try {
+      await api.post("/enquiries", { ...form, name: form.name.trim(), source: id });
+    } catch (err) {
+      setBusy(false);
+      return toast.error(errText(err));
+    }
+    setBusy(false);
     setDone(true);
     toast.success(`Thank you, ${form.name.split(" ")[0]}! A designer will call you shortly.`);
   };
@@ -51,7 +61,7 @@ export const ConsultForm = ({ id = "hero" }) => {
             data-testid={`${id}-type-${t.replace(/\s/g, "").toLowerCase()}`}>{t}</button>
         ))}
       </div>
-      <button type="submit" className="group mt-2 flex h-13 w-full items-center justify-center gap-2 rounded-full bg-[#FEBD1C] py-3.5 font-medium text-white transition-colors duration-300 hover:bg-[#F0AC00]" data-testid={`${id}-consult-submit-btn`}>
+      <button type="submit" disabled={busy} className="group mt-2 flex h-13 w-full items-center justify-center gap-2 rounded-full bg-[#FEBD1C] py-3.5 font-medium text-white transition-colors duration-300 hover:bg-[#F0AC00] disabled:opacity-60" data-testid={`${id}-consult-submit-btn`}>
         Book Free Consultation
         <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
       </button>

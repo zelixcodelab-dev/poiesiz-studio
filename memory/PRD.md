@@ -42,6 +42,11 @@ React (CRA) frontend only. framer-motion, lenis, shadcn accordion/dialog, sonner
 - Content stored as per-section overrides in Mongo `site_content`; site falls back to built-in defaults; "Restore original" per section
 - Price calculator page content/rates not yet editable from admin
 
+## Implemented (2026-11-12, iteration 5)
+- Price calculator rates editable in admin ("Price calculator rates"): finish levels (multiplier, features), rooms (base price in lakhs, max qty), kitchen layouts, add-ons (₹/sq ft or fixed lakhs), note
+- Enquiry inbox: booking forms POST /api/enquiries (validated); admin "Enquiries inbox" with call button, status New/Called/Closed, notes, archive (soft)
+- Project detail pages /projects/:slug with cover, facts, description, masonry gallery + lightbox, next-project link; project cards link there; description + gallery editable in admin Projects
+
 ## Backlog
 - P1: Make price calculator rates editable in admin
 - P1: Save consultation requests to an admin inbox

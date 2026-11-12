@@ -22,6 +22,7 @@ import { Services } from "./components/site/Services";
 import { Ongoing } from "./components/site/Ongoing";
 import { BookDialog } from "./components/site/BookDialog";
 import PriceCalculator from "./pages/PriceCalculator";
+import ProjectDetail from "./pages/ProjectDetail";
 import AdminApp from "./admin/AdminApp";
 import { ContentProvider, useContent, list } from "./lib/content";
 import { SECTION_LABELS } from "./data/defaults";
@@ -71,6 +72,7 @@ const Shell = () => {
       <Routes>
         <Route path="/" element={<Home onBook={book} />} />
         <Route path="/price-calculator" element={<PriceCalculator onBook={book} />} />
+        <Route path="/projects/:slug" element={<ProjectDetail onBook={book} />} />
         <Route path="*" element={<Home onBook={book} />} />
       </Routes>
       <Footer onBook={book} home={home} />

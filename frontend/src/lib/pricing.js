@@ -23,10 +23,10 @@ export const KITCHEN_SHAPES = [
 ];
 
 export const ADDONS = [
-  { key: "ceiling", label: "False ceiling", perSqft: 0.00055 },
-  { key: "painting", label: "Wall painting", perSqft: 0.0003 },
-  { key: "lighting", label: "Designer lighting", flat: 0.35 },
-  { key: "electrical", label: "Electrical rework", flat: 0.4 },
+  { key: "ceiling", label: "False ceiling", pricePerSqft: 55, flatLakh: "" },
+  { key: "painting", label: "Wall painting", pricePerSqft: 30, flatLakh: "" },
+  { key: "lighting", label: "Designer lighting", pricePerSqft: "", flatLakh: 0.35 },
+  { key: "electrical", label: "Electrical rework", pricePerSqft: "", flatLakh: 0.4 },
 ];
 
 export const BHK_DEFAULTS = {
@@ -36,14 +36,16 @@ export const BHK_DEFAULTS = {
   4: { area: 2100, rooms: { living: 1, kitchen: 1, master: 1, bedroom: 3, dining: 1, bath: 4, pooja: 1, study: 1 } },
 };
 
-export const estimate = ({ rooms, shape, area, addons }, mult) => {
-  const shapeMult = KITCHEN_SHAPES.find((s) => s.key === shape)?.mult ?? 1;
-  const lines = ROOM_ITEMS.filter((r) => rooms[r.key] > 0).map((r) => ({
+export const estimate = ({ rooms, shape, area, addons }, mult, cfg) => {
+  const { ROOM_ITEMS: RI, KITCHEN_SHAPES: KS, ADDONS: AD } = cfg;
+  const shapeMult = KS.find((s) => s.key === shape)?.mult ?? 1;
+  const lines = RI.filter((r) => rooms[r.key] > 0).map((r) => ({
     key: r.key, label: r.label, qty: rooms[r.key],
     cost: r.base * rooms[r.key] * mult * (r.key === "kitchen" ? shapeMult : 1),
   }));
-  ADDONS.filter((a) => addons[a.key]).forEach((a) => {
-    lines.push({ key: a.key, label: a.label, qty: 1, cost: (a.flat ?? a.perSqft * area) * (a.flat ? mult : 1 + (mult - 1) * 0.5) });
+  AD.filter((a) => addons[a.key]).forEach((a) => {
+    const cost = a.flatLakh > 0 ? a.flatLakh * mult : (a.pricePerSqft * area) / 100000 * (1 + (mult - 1) * 0.5);
+    lines.push({ key: a.key, label: a.label, qty: 1, cost });
   });
   const total = lines.reduce((s, l) => s + l.cost, 0);
   return { lines, total, low: total * 0.9, high: total * 1.1 };

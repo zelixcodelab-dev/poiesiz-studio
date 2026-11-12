@@ -1,9 +1,11 @@
 import { Slider } from "../ui/slider";
 import { Check } from "lucide-react";
-import { ROOM_ITEMS, KITCHEN_SHAPES, ADDONS, TIERS, BHK_DEFAULTS } from "../../lib/pricing";
+import { usePricing } from "../../lib/usePricing";
 import { Choice, Stepper, Toggle, StepTitle } from "./Parts";
 
-export const HomeStep = ({ s, setS }) => (
+export const HomeStep = ({ s, setS }) => {
+  const { BHK_DEFAULTS } = usePricing();
+  return (
   <div>
     <StepTitle n={1} title="Tell us about your home" sub="Pick the size. We'll pre-fill the rooms a home like yours usually has." />
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -23,15 +25,18 @@ export const HomeStep = ({ s, setS }) => (
       <div className="mt-3 flex justify-between text-xs text-[#6E6B65]"><span>400</span><span>3,500</span></div>
     </div>
   </div>
-);
+  );
+};
 
-export const RoomsStep = ({ s, setS }) => (
+export const RoomsStep = ({ s, setS }) => {
+  const { ROOM_ITEMS, KITCHEN_SHAPES, ADDONS } = usePricing();
+  return (
   <div>
     <StepTitle n={2} title="Choose the rooms" sub="Add or remove anything. The live estimate updates as you go." />
     <div className="grid gap-3 md:grid-cols-2">
-      {ROOM_ITEMS.map((r) => <Stepper key={r.key} item={r} value={s.rooms[r.key]} onChange={(v) => setS({ ...s, rooms: { ...s.rooms, [r.key]: v } })} />)}
+      {ROOM_ITEMS.map((r) => <Stepper key={r.key} item={r} value={s.rooms[r.key] ?? 0} onChange={(v) => setS({ ...s, rooms: { ...s.rooms, [r.key]: v } })} />)}
     </div>
-    {s.rooms.kitchen > 0 && (
+    {s.rooms.kitchen > 0 && KITCHEN_SHAPES.length > 0 && (
       <div className="mt-10">
         <p className="mb-3 font-medium text-[#1A1918]">Kitchen layout</p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -46,9 +51,12 @@ export const RoomsStep = ({ s, setS }) => (
       </div>
     </div>
   </div>
-);
+  );
+};
 
-export const FinishStep = ({ s, setS }) => (
+export const FinishStep = ({ s, setS }) => {
+  const { TIERS } = usePricing();
+  return (
   <div>
     <StepTitle n={3} title="Pick a finish level" sub="This sets the materials, hardware and warranty for everything you chose." />
     <div className="grid gap-4 lg:grid-cols-3">
@@ -57,10 +65,11 @@ export const FinishStep = ({ s, setS }) => (
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#8A6200]">{t.note}</p>
           <p className="mt-2 font-display text-2xl font-semibold text-[#1A1918]">{t.label}</p>
           <ul className="mt-5 space-y-2.5">
-            {t.features.map((f) => <li key={f} className="flex gap-2 text-sm text-[#6E6B65]"><Check className="mt-0.5 h-4 w-4 shrink-0 text-[#5E7A4C]" />{f}</li>)}
+            {t.features.map((f, fi) => <li key={fi} className="flex gap-2 text-sm text-[#6E6B65]"><Check className="mt-0.5 h-4 w-4 shrink-0 text-[#5E7A4C]" />{f}</li>)}
           </ul>
         </Choice>
       ))}
     </div>
   </div>
-);
+  );
+};

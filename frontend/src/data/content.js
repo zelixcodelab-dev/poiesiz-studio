@@ -35,16 +35,18 @@ export const TRENDING = [
 
 const P = (f) => `/projects/${f}.jpg`;
 
+const G = (...f) => f.map(P);
+
 export const PROJECTS = [
-  { name: "Chai Bazaar", type: "Retail", label: "Retail shop · Kannan Devan Hills Plantations", place: "Mattupetty, Munnar", status: "Completed", img: P("chai-interior-3") },
-  { name: "Mr. Vinod's Residence", type: "Residence", label: "Residence", place: "Aluva", status: "Completed", img: P("vinod-dining") },
-  { name: "Design Platform", type: "Residence", label: "Residential interiors · Sojan", place: "Thrissur", status: "Completed", img: P("thrissur-kitchen") },
-  { name: "Cubespace", type: "Office", label: "Office interior", place: "Kakkanad, Ernakulam", status: "Completed", img: P("cubespace-1") },
-  { name: "Geojit Finance", type: "Office", label: "Financial institution", place: "", status: "Completed", img: P("geojit-2") },
-  { name: "River Showroom", type: "Commercial", label: "Showroom", place: "", status: "Completed", img: P("river-1") },
-  { name: "Optical Store", type: "Commercial", label: "Commercial interiors", place: "", status: "Completed", img: P("optical-shop") },
-  { name: "Actor Indrajith Sukumaran's Residence", type: "Residence", label: "Residence interior", place: "Maradu, Ernakulam", status: "On-going", img: P("indrajith-2") },
-  { name: "Commercial Building", type: "Commercial", label: "Commercial interiors", place: "", status: "Completed", img: P("commercial-building") },
+  { name: "Chai Bazaar", type: "Retail", label: "Retail shop · Kannan Devan Hills Plantations", place: "Mattupetty, Munnar", status: "Completed", img: P("chai-interior-3"), description: "Recently completed retail shop for Kannan Devan Hills Plantations at the Munnar Tea Museum, Mattupetty Tea Factory.", gallery: G("chai-entrance", "chai-interior-1", "chai-interior-2", "chai-interior-3", "chai-interior-4", "chai-exterior", "chai-entrance-2") },
+  { name: "Mr. Vinod's Residence", type: "Residence", label: "Residence", place: "Aluva", status: "Completed", img: P("vinod-dining"), description: "", gallery: G("vinod-dining", "vinod-tv", "vinod-bath") },
+  { name: "Design Platform", type: "Residence", label: "Residential interiors · Sojan", place: "Thrissur", status: "Completed", img: P("thrissur-kitchen"), description: "", gallery: G("thrissur-kitchen", "thrissur-courtyard") },
+  { name: "Cubespace", type: "Office", label: "Office interior", place: "Kakkanad, Ernakulam", status: "Completed", img: P("cubespace-1"), description: "", gallery: G("cubespace-1", "cubespace-2") },
+  { name: "Geojit Finance", type: "Office", label: "Financial institution", place: "", status: "Completed", img: P("geojit-2"), description: "", gallery: G("geojit-2", "geojit-1") },
+  { name: "River Showroom", type: "Commercial", label: "Showroom", place: "", status: "Completed", img: P("river-1"), description: "", gallery: G("river-1", "river-2") },
+  { name: "Optical Store", type: "Commercial", label: "Commercial interiors", place: "", status: "Completed", img: P("optical-shop"), description: "", gallery: G("optical-shop") },
+  { name: "Actor Indrajith Sukumaran's Residence", type: "Residence", label: "Residence interior", place: "Maradu, Ernakulam", status: "On-going", img: P("indrajith-2"), description: "", gallery: G("indrajith-2", "indrajith-1") },
+  { name: "Commercial Building", type: "Commercial", label: "Commercial interiors", place: "", status: "Completed", img: P("commercial-building"), description: "", gallery: G("commercial-building") },
 ];
 
 export const ONGOING = [
