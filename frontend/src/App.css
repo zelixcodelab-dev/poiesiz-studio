@@ -14,7 +14,9 @@ html.lenis, html.lenis body { height: auto; }
 .marquee-track { animation: marquee 60s linear infinite; }
 .marquee-track:hover { animation-play-state: paused; }
 
-::selection { background: #C85A32; color: #fff; }
+::selection { background: #FEBD1C; color: #111111; }
+
+[class~="bg-[#FEBD1C]"] { color: #111111 !important; }
 
 .grain { position: relative; }
 .grain::after {

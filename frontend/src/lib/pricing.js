@@ -1,7 +1,7 @@
 export const TIERS = [
-  { key: "economy", label: "Economy", mult: 1, note: "Smart, durable basics", features: ["BWR plywood carcass", "Laminate finishes", "Soft-close hinges", "5-year warranty on modular work"] },
-  { key: "premium", label: "Premium", mult: 1.6, note: "Most homes choose this", features: ["BWP plywood carcass", "Acrylic / PU finishes", "Branded soft-close hardware", "10-year warranty on modular work"] },
-  { key: "luxury", label: "Luxury", mult: 2.5, note: "Statement materials", features: ["Marine ply & veneers", "Lacquered glass, fluted panels", "Premium imported fittings", "15-year warranty on modular work"] },
+  { key: "economy", label: "Economy", mult: 1, note: "Smart, durable basics", features: ["BWR plywood carcass", "Laminate finishes", "Soft-close hinges", "Long-time warranty"] },
+  { key: "premium", label: "Premium", mult: 1.6, note: "Most homes choose this", features: ["BWP plywood carcass", "Acrylic / PU finishes", "Branded soft-close hardware", "Long-time warranty"] },
+  { key: "luxury", label: "Luxury", mult: 2.5, note: "Statement materials", features: ["Marine ply & veneers", "Lacquered glass, fluted panels", "Premium imported fittings", "Long-time warranty"] },
 ];
 
 export const ROOM_ITEMS = [

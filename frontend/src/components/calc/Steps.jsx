@@ -17,7 +17,7 @@ export const HomeStep = ({ s, setS }) => (
     <div className="mt-10 rounded-2xl border border-[#E5DEC9] bg-white p-6">
       <div className="flex items-end justify-between">
         <p className="font-medium text-[#1A1918]">Carpet area</p>
-        <p className="font-mono text-lg text-[#C85A32]" data-testid="calc-area-value">{s.area.toLocaleString("en-IN")} sq ft</p>
+        <p className="font-mono text-lg text-[#8A6200]" data-testid="calc-area-value">{s.area.toLocaleString("en-IN")} sq ft</p>
       </div>
       <Slider className="mt-6" min={400} max={3500} step={50} value={[s.area]} onValueChange={([v]) => setS({ ...s, area: v })} data-testid="calc-area-slider" />
       <div className="mt-3 flex justify-between text-xs text-[#6E6B65]"><span>400</span><span>3,500</span></div>
@@ -54,7 +54,7 @@ export const FinishStep = ({ s, setS }) => (
     <div className="grid gap-4 lg:grid-cols-3">
       {TIERS.map((t) => (
         <Choice key={t.key} active={s.tier === t.key} onClick={() => setS({ ...s, tier: t.key })} testId={`calc-tier-${t.key}`} className="flex flex-col p-6">
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#C85A32]">{t.note}</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#8A6200]">{t.note}</p>
           <p className="mt-2 font-display text-2xl font-semibold text-[#1A1918]">{t.label}</p>
           <ul className="mt-5 space-y-2.5">
             {t.features.map((f) => <li key={f} className="flex gap-2 text-sm text-[#6E6B65]"><Check className="mt-0.5 h-4 w-4 shrink-0 text-[#5E7A4C]" />{f}</li>)}

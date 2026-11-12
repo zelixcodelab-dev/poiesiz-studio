@@ -13,8 +13,8 @@ export const Rooms = () => {
         <Reveal className="no-scrollbar -mx-5 mb-8 flex gap-2 overflow-x-auto px-5 md:mx-0 md:px-0">
           {ROOMS.map((r) => (
             <button key={r.key} onClick={() => setActive(r.key)} data-testid={`rooms-tab-${r.key}`}
-              className={`flex h-12 shrink-0 items-center gap-2 rounded-full px-5 text-sm transition-colors duration-300 ${active === r.key ? "bg-[#C85A32] text-white" : "bg-white text-[#1A1918] hover:bg-[#E5DEC9]"}`}>
-              {r.label}<span className={`font-mono text-xs ${active === r.key ? "text-white/80" : "text-[#6E6B65]"}`}>{r.count}</span>
+              className={`flex h-12 shrink-0 items-center gap-2 rounded-full px-5 text-sm transition-colors duration-300 ${active === r.key ? "bg-[#FEBD1C] text-white" : "bg-white text-[#1A1918] hover:bg-[#E5DEC9]"}`}>
+              {r.label}<span className={`font-mono text-xs ${active === r.key ? "text-[#111111]/70" : "text-[#6E6B65]"}`}>{r.count}</span>
             </button>))}
         </Reveal>
         <div className="grid gap-3 md:grid-cols-4 md:grid-rows-2 md:h-[620px]" data-testid="rooms-gallery">

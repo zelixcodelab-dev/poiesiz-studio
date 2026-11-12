@@ -25,6 +25,14 @@ React (CRA) frontend only. framer-motion, lenis, shadcn accordion/dialog, sonner
 - Nav/footer link to calculator; section links work from the calculator page (/#section); home estimator links to full calculator
 - Pricing rates live in src/lib/pricing.js (sample values)
 
+## Implemented (2026-11-12, iteration 3) — Rebrand to POIESIZ Interiors
+- Brand from user's PDF + logo: POIESIZ Interiors, "Modern & Custom Interiors", Kochi (Palarivattom office)
+- Colours matched to logo yellow #FEBD1C with charcoal; yellow buttons use dark text; logo mark used as favicon
+- Real project photos cropped from the PDF into /public/projects (Chai Bazaar Munnar, Mr. Vinod's Residence Aluva, Design Platform Thrissur, Cubespace Kakkanad, Geojit Finance, River Showroom, optical store, Indrajith Sukumaran residence Maradu)
+- New sections: Services (4 from PDF), Clients, On-going projects gallery, Contact (address, 2 phones, email, website, map)
+- Removed sample reviews and invented warranty years; FAQs/steps/why-us rewritten from PDF
+- Stock photos still used in hero, trending ideas, rooms and styles sections
+
 ## Placeholders
 Studio addresses, review texts, project names/ratings, idea counts, featured story, estimator rates, social links
 

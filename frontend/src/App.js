@@ -16,9 +16,10 @@ import { Vaastu } from "./components/site/Vaastu";
 import { WhyUs } from "./components/site/WhyUs";
 import { Centres } from "./components/site/Centres";
 import { HowItWorks } from "./components/site/HowItWorks";
-import { Reviews } from "./components/site/Reviews";
 import { Faq } from "./components/site/Faq";
 import { Footer } from "./components/site/Footer";
+import { Services } from "./components/site/Services";
+import { Ongoing } from "./components/site/Ongoing";
 import { BookDialog } from "./components/site/BookDialog";
 import PriceCalculator from "./pages/PriceCalculator";
 
@@ -26,17 +27,18 @@ const Home = ({ onBook }) => (
   <main>
     <Hero />
     <Marquee />
+    <Services />
+    <Projects />
+    <Featured />
     <Trending />
     <Estimator onBook={onBook} />
-    <Projects />
     <Rooms />
-    <Featured />
     <Styles />
     <Vaastu onBook={onBook} />
     <WhyUs />
-    <Centres onBook={onBook} />
+    <Ongoing />
     <HowItWorks />
-    <Reviews />
+    <Centres onBook={onBook} />
     <Faq onBook={onBook} />
   </main>
 );

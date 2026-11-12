@@ -32,7 +32,7 @@ export const MaskLines = ({ lines, className = "", delay = 0.2, as: Tag = "h1", 
 );
 
 export const Eyebrow = ({ children, light }) => (
-  <p className={`font-mono text-xs uppercase tracking-[0.22em] ${light ? "text-[#D4A359]" : "text-[#C85A32]"}`}>{children}</p>
+  <p className={`font-mono text-xs uppercase tracking-[0.22em] ${light ? "text-[#FEBD1C]" : "text-[#8A6200]"}`}>{children}</p>
 );
 
 export const SectionHead = ({ eyebrow, title, sub, light, right }) => (

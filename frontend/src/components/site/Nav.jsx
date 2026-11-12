@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 
-const SECTIONS = [["Ideas", "#ideas"], ["Projects", "#projects"], ["Rooms", "#rooms"], ["Studios", "#studios"], ["FAQs", "#faq"]];
+const SECTIONS = [["Ideas", "#ideas"], ["Projects", "#projects"], ["Rooms", "#rooms"], ["Services", "#services"], ["Contact", "#studios"], ["FAQs", "#faq"]];
 
 export const Nav = ({ onBook, home = true }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -21,13 +21,14 @@ export const Nav = ({ onBook, home = true }) => {
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 md:h-20 md:px-10">
         <Logo light={!solid} />
         <nav className="hidden items-center gap-8 lg:flex">
-          <Link to="/price-calculator" className={`text-sm transition-colors duration-300 hover:text-[#C85A32] ${solid ? "text-[#1A1918]" : "text-[#FBF9F5]"}`} data-testid="nav-link-calculator">Price Calculator</Link>
+          <Link to="/price-calculator" className={`text-sm transition-colors duration-300 hover:text-[#8A6200] ${solid ? "text-[#1A1918]" : "text-[#FBF9F5]"}`} data-testid="nav-link-calculator">Price Calculator</Link>
           {LINKS.map(([l, h]) => (
-            <a key={h} href={h} className={`text-sm transition-colors duration-300 hover:text-[#C85A32] ${solid ? "text-[#1A1918]" : "text-[#FBF9F5]"}`} data-testid={`nav-link-${l.toLowerCase()}`}>{l}</a>
+            <a key={h} href={h} className={`text-sm transition-colors duration-300 hover:text-[#8A6200] ${solid ? "text-[#1A1918]" : "text-[#FBF9F5]"}`} data-testid={`nav-link-${l.toLowerCase()}`}>{l}</a>
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <button onClick={onBook} className="hidden rounded-full bg-[#C85A32] px-5 py-2.5 text-sm font-medium text-white transition-colors duration-300 hover:bg-[#B24C28] sm:block" data-testid="nav-book-btn">Book Free Consultation</button>
+          <a href="tel:+919961775580" className={`hidden text-sm font-medium transition-colors duration-300 hover:text-[#FEBD1C] xl:block ${solid ? "text-[#1A1918]" : "text-white"}`} data-testid="nav-phone-link">+91 99617 75580</a>
+          <button onClick={onBook} className="hidden rounded-full bg-[#FEBD1C] px-5 py-2.5 text-sm font-medium text-white transition-colors duration-300 hover:bg-[#F0AC00] sm:block" data-testid="nav-book-btn">Book Free Consultation</button>
           <button onClick={() => setOpen(!open)} className={`flex h-11 w-11 items-center justify-center rounded-full lg:hidden ${solid ? "text-[#1A1918]" : "text-white"}`} aria-label="Menu" data-testid="nav-mobile-toggle">
             {open ? <X /> : <Menu />}
           </button>
@@ -35,11 +36,11 @@ export const Nav = ({ onBook, home = true }) => {
       </div>
       {open && (
         <div className="border-t border-[#E5DEC9] px-5 pb-6 lg:hidden" data-testid="nav-mobile-menu">
-          <Link to="/price-calculator" onClick={() => setOpen(false)} className="block border-b border-[#E5DEC9] py-4 font-display text-xl text-[#C85A32]" data-testid="nav-mobile-link-calculator">Price Calculator</Link>
+          <Link to="/price-calculator" onClick={() => setOpen(false)} className="block border-b border-[#E5DEC9] py-4 font-display text-xl text-[#8A6200]" data-testid="nav-mobile-link-calculator">Price Calculator</Link>
           {LINKS.map(([l, h]) => (
             <a key={h} href={h} onClick={() => setOpen(false)} className="block border-b border-[#E5DEC9] py-4 font-display text-xl text-[#1A1918]" data-testid={`nav-mobile-link-${l.toLowerCase()}`}>{l}</a>
           ))}
-          <button onClick={() => { setOpen(false); onBook(); }} className="mt-5 w-full rounded-full bg-[#C85A32] py-3.5 font-medium text-white" data-testid="nav-mobile-book-btn">Book Free Consultation</button>
+          <button onClick={() => { setOpen(false); onBook(); }} className="mt-5 w-full rounded-full bg-[#FEBD1C] py-3.5 font-medium text-white" data-testid="nav-mobile-book-btn">Book Free Consultation</button>
         </div>
       )}
     </header>

@@ -8,7 +8,7 @@ export const Marquee = () => (
           {WORDS.map((w) => (
             <span key={w} className="flex items-center font-display text-3xl tracking-tight text-[#1A1918] md:text-5xl">
               <span className="px-8">{w}</span>
-              <span className="text-[#C85A32]">✦</span>
+              <span className="text-[#E0A100]">✦</span>
             </span>
           ))}
         </div>

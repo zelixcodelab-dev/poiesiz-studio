@@ -4,7 +4,7 @@ import { lakh } from "../../lib/pricing";
 
 export const Summary = ({ est, label }) => (
   <div className="rounded-[24px] border border-[#E5DEC9] bg-white p-6" data-testid="calc-summary">
-    <div className="flex items-center gap-2 text-[#C85A32]"><Calculator className="h-4 w-4" /><span className="font-mono text-xs uppercase tracking-[0.2em]">Live estimate</span></div>
+    <div className="flex items-center gap-2 text-[#8A6200]"><Calculator className="h-4 w-4" /><span className="font-mono text-xs uppercase tracking-[0.2em]">Live estimate</span></div>
     <motion.p key={est.total.toFixed(2)} initial={{ opacity: 0.3, y: 6 }} animate={{ opacity: 1, y: 0 }} className="mt-3 font-display text-3xl font-semibold tracking-tight text-[#1A1918]" data-testid="calc-summary-total">
       {est.total ? `${lakh(est.low)} – ${lakh(est.high)}` : "₹0"}
     </motion.p>

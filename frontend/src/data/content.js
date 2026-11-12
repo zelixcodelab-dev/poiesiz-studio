@@ -20,10 +20,10 @@ export const IMG = {
   din4: u("photo-1761658652336-95d31ce1d806"),
 };
 
-export const CITIES = ["Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai", "Delhi NCR"];
-export const PROPERTY_TYPES = ["1 BHK", "2 BHK", "3 BHK", "4 BHK", "Villa"];
+export const CITIES = ["Kochi", "Ernakulam", "Aluva", "Kakkanad", "Maradu", "Thrissur", "Munnar", "Other (Kerala)"];
+export const PROPERTY_TYPES = ["Apartment", "Villa", "Penthouse", "Office", "Retail shop", "Commercial"];
 
-export const USPS = ["Designs drawn for you", "Every rupee itemised", "Long-term warranty"];
+export const USPS = ["Concept to turnkey handover", "Material transparency", "Long-time warranty"];
 
 export const TRENDING = [
   { title: "Soft Nordic Mornings", tag: "Living", imgs: [IMG.living2, IMG.din1, IMG.bed3] },
@@ -33,14 +33,45 @@ export const TRENDING = [
   { title: "Dinner For Eight", tag: "Dining", imgs: [IMG.din4, IMG.din2, IMG.din1] },
 ];
 
+const P = (f) => `/projects/${f}.jpg`;
+
 export const PROJECTS = [
-  { name: "The Banyan Residence", city: "Bengaluru", style: "Modern Classical", bhk: "4 BHK", rating: 5, img: IMG.living1 },
-  { name: "Lakeview Courtyard", city: "Hyderabad", style: "Indian Contemporary", bhk: "3 BHK", rating: 5, img: IMG.living3 },
-  { name: "Riverside Quiet House", city: "Pune", style: "Japandi", bhk: "3 BHK", rating: 4, img: IMG.bed1 },
-  { name: "Marine Drive Loft", city: "Mumbai", style: "Luxury Modern", bhk: "2 BHK", rating: 5, img: IMG.kit2 },
-  { name: "Neem Tree Villa", city: "Bengaluru", style: "Tropical", bhk: "Villa", rating: 5, img: IMG.din4 },
-  { name: "Old Town Terrace", city: "Hyderabad", style: "Eclectic", bhk: "2 BHK", rating: 4, img: IMG.din3 },
+  { name: "Chai Bazaar", type: "Retail", label: "Retail shop · Kannan Devan Hills Plantations", place: "Mattupetty, Munnar", status: "Completed", img: P("chai-interior-3") },
+  { name: "Mr. Vinod's Residence", type: "Residence", label: "Residence", place: "Aluva", status: "Completed", img: P("vinod-dining") },
+  { name: "Design Platform", type: "Residence", label: "Residential interiors · Sojan", place: "Thrissur", status: "Completed", img: P("thrissur-kitchen") },
+  { name: "Cubespace", type: "Office", label: "Office interior", place: "Kakkanad, Ernakulam", status: "Completed", img: P("cubespace-1") },
+  { name: "Geojit Finance", type: "Office", label: "Financial institution", place: "", status: "Completed", img: P("geojit-2") },
+  { name: "River Showroom", type: "Commercial", label: "Showroom", place: "", status: "Completed", img: P("river-1") },
+  { name: "Optical Store", type: "Commercial", label: "Commercial interiors", place: "", status: "Completed", img: P("optical-shop") },
+  { name: "Actor Indrajith Sukumaran's Residence", type: "Residence", label: "Residence interior", place: "Maradu, Ernakulam", status: "On-going", img: P("indrajith-2") },
+  { name: "Commercial Building", type: "Commercial", label: "Commercial interiors", place: "", status: "Completed", img: P("commercial-building") },
 ];
+
+export const ONGOING = [
+  { img: P("indrajith-1"), label: "Actor Indrajith Sukumaran's Residence · Maradu" },
+  { img: P("ongoing-house"), label: "Residence · on-going" },
+  { img: P("ongoing-panel"), label: "Wall panelling" },
+  { img: P("ongoing-cabinet"), label: "Wardrobe & cabinetry" },
+  { img: P("ongoing-site"), label: "Ceiling & lighting work" },
+  { img: P("ongoing-facade"), label: "Commercial interiors · on-going" },
+  { img: P("indrajith-2"), label: "Residence entrance · Maradu" },
+];
+
+export const SERVICES = [
+  { title: "Complete Turnkey Services", text: "We design solutions tailored to your style, space and budget. This includes interior execution, MEP services such as electrical, plumbing, air conditioning etc." },
+  { title: "Residential Interiors", text: "Considering your requirements and space constraints, our dedicated team will help you create your dream home with all its beauty." },
+  { title: "Commercial Interiors", text: "We create visually impressive commercial spaces that reflect a specific theme, prioritising functionality and safety, without compromising on freshness, style and aesthetics." },
+  { title: "Office Interiors", text: "Finest, highly ergonomic office interiors, right from cabins to bay areas, receptions, meeting areas, conference rooms, cubicles, pantry and every other space requirement." },
+];
+
+export const CLIENTS = ["TATA Projects", "Tata Consumer Products Limited", "Sands Infra", "Kannan Devan Hills Plantations Company (P) Ltd", "Ripple Tea", "abm"];
+
+export const CONTACT = {
+  phones: ["+91 99617 75580", "+91 82818 99881"],
+  email: "poiesizinteriors@gmail.com",
+  address: "43/2635-A2, Pallissery Road, Palarivattom, Ernakulam 682 025",
+  website: "www.poiesiz.com",
+};
 
 export const ROOMS = [
   { key: "master", label: "Master Bedroom", count: 186, imgs: [IMG.bed1, IMG.bed4, IMG.bed3, IMG.bed2] },
@@ -52,7 +83,7 @@ export const ROOMS = [
 
 export const STYLES = [
   { name: "Tropical", count: 1120, img: IMG.din4, chips: ["#5E7A4C", "#E9DCC3", "#9A6B3F"] },
-  { name: "Indian Fusion", count: 1380, img: IMG.living1, chips: ["#C85A32", "#D4A359", "#2D3B36"] },
+  { name: "Indian Fusion", count: 1380, img: IMG.living1, chips: ["#8A6200", "#FEBD1C", "#1C1C1C"] },
   { name: "Modern Classical", count: 5240, img: IMG.bed1, chips: ["#1A1918", "#E5DEC9", "#B08D57"] },
   { name: "Japandi", count: 960, img: IMG.living3, chips: ["#A89A86", "#F3EFEA", "#4A4038"] },
 ];
@@ -60,26 +91,18 @@ export const STYLES = [
 export const CATEGORIES = ["Tile Designs", "Wall Panels", "Balcony Ideas", "False Ceilings", "Wardrobes", "Pooja Units", "TV Units", "Study Corners"];
 
 export const WHY = [
-  { title: "One team, start to finish", text: "A dedicated designer and project manager stay with your home from the first sketch to the final clean-up." },
-  { title: "Built in our own workshop", text: "Modular units are cut, edged and finished in-house, so quality never depends on a middleman." },
-  { title: "Designed around your day", text: "Storage, lighting and layouts planned for how your family actually cooks, works and rests." },
-  { title: "A price you can read", text: "Itemised quotes with materials, hardware and labour listed line by line. No surprises at handover." },
-  { title: "Checked, then checked again", text: "Multi-stage quality checks at the workshop and on site before anything is signed off." },
-];
-
-export const CENTRES = [
-  { area: "Whitefield", city: "Bengaluru" },
-  { area: "HSR Layout", city: "Bengaluru" },
-  { area: "Wakad", city: "Pune" },
-  { area: "Kondapur", city: "Hyderabad" },
-  { area: "Bandra West", city: "Mumbai" },
+  { title: "Concept to turnkey handover", text: "Our team assists right from the initial conceptual design to the turnkey handover, transforming any construction into a dream project." },
+  { title: "In-house expertise", text: "A great team of engineers, interior designers, technicians and contractors under one roof." },
+  { title: "Material transparency", text: "Customised turnkey and unique interior designs, with complete transparency on every material used." },
+  { title: "Lifetime assistance", text: "Our commitment to lifetime assistance is upheld by a long-time warranty." },
+  { title: "Timely, sustainable delivery", text: "Innovative design solutions delivered on time, with sustainable options that respect the environment we live in." },
 ];
 
 export const STEPS = [
-  { title: "Free design consultation", text: "Meet a designer, share your floor plan and walk through ideas, finishes and budget." },
-  { title: "Confirm your booking", text: "Lock your slot with a small token amount once you like the direction." },
-  { title: "Your detailed design", text: "Room-by-room 3D views, material boards and a final itemised quote for sign-off." },
-  { title: "Make & install", text: "Units are built in the workshop, then installed and finished on site by our crew." },
+  { title: "Free consultation", text: "Share your space, style and budget with our team, and walk through ideas together." },
+  { title: "Conceptual design", text: "We develop a concept tailored to your requirements and space constraints." },
+  { title: "Execution & MEP", text: "Interior execution along with electrical, plumbing and air-conditioning by our in-house team." },
+  { title: "Turnkey handover", text: "Your space is handed over ready to use, with lifetime assistance afterwards." },
 ];
 
 export const REVIEWS = [
@@ -91,14 +114,14 @@ export const REVIEWS = [
 ];
 
 export const FAQS = [
-  { q: "How do I get started with Aangan Studio?", a: "Book a free consultation using the form on this page. A designer will call you to understand your home, timeline and budget, and set up a meeting." },
+  { q: "How do I get started with POIESIZ Interiors?", a: "Book a free consultation using the form on this page. A designer will call you to understand your home, timeline and budget, and set up a meeting." },
   { q: "Is the design consultation really free?", a: "Yes. The first consultation has no charge and no obligation. You only pay a token amount if you decide to go ahead." },
-  { q: "Which cities do you work in?", a: "We currently take projects in the cities listed in our footer. If yours isn't there, leave your details and we'll tell you when we arrive." },
-  { q: "What is included in your interior services?", a: "Space planning, 3D design, material selection, modular furniture, false ceilings, lighting, painting, installation and project management." },
+  { q: "Where are you based and which projects do you take?", a: "We are based in Kochi, Kerala, and undertake both residential and commercial projects: luxury homes, penthouses, flats, financial institutions, offices and retail shops." },
+  { q: "What is included in your turnkey service?", a: "Everything from the initial conceptual design to the turnkey handover, including interior execution and MEP services such as electrical, plumbing and air conditioning." },
   { q: "Can I change the design after booking?", a: "Yes. You can make revisions during the design stage. Changes after production starts are discussed with you along with any cost impact." },
   { q: "Are there any hidden costs?", a: "No. You receive an itemised quote before work starts, covering materials, hardware, labour and taxes." },
   { q: "How long will my home take?", a: "It depends on scope and size. Your designer will share a dated timeline after the consultation, and your project manager tracks it on site." },
-  { q: "Do you offer a warranty and after-sales support?", a: "Yes. Modular work is covered by a written warranty and our service team handles any issues after handover." },
+  { q: "Do you offer a warranty and after-sales support?", a: "Yes. Our work is backed by a long-time warranty and our commitment to lifetime assistance." },
 ];
 
-export const FOOTER_CITIES = ["Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai", "Delhi", "Gurugram", "Noida"];
+export const FOOTER_CITIES = ["Kochi", "Ernakulam", "Palarivattom", "Kakkanad", "Aluva", "Maradu", "Thrissur", "Munnar"];
