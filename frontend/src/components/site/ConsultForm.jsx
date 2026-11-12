@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { CheckCircle2, ArrowRight } from "lucide-react";
-import { CITIES, PROPERTY_TYPES } from "../../data/content";
+import { useContent, list } from "../../lib/content";
 
 const field = "h-12 w-full rounded-xl border border-[#E5DEC9] bg-white px-4 text-[15px] text-[#1A1918] outline-none transition-colors duration-300 placeholder:text-[#8E8A82] focus:border-[#8A6200]";
 
 export const ConsultForm = ({ id = "hero" }) => {
+  const fc = useContent("form");
+  const CITIES = list(fc.cities);
+  const PROPERTY_TYPES = list(fc.types);
   const [form, setForm] = useState({ name: "", phone: "", city: "", type: "Apartment" });
   const [done, setDone] = useState(false);
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });

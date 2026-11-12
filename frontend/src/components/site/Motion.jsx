@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 
+export const rich = (s, cls) => String(s ?? "").split(/(\*[^*]+\*)/).map((p, i) => (p.length > 2 && p.startsWith("*") && p.endsWith("*") ? <span key={i} className={cls}>{p.slice(1, -1)}</span> : p));
+
 const ease = [0.22, 1, 0.36, 1];
 
 export const Reveal = ({ children, delay = 0, className = "", y = 28 }) => (

@@ -33,6 +33,20 @@ React (CRA) frontend only. framer-motion, lenis, shadcn accordion/dialog, sonner
 - Removed sample reviews and invented warranty years; FAQs/steps/why-us rewritten from PDF
 - Stock photos still used in hero, trending ideas, rooms and styles sections
 
+## Implemented (2026-11-12, iteration 4) — Admin dashboard + client logos
+- Client logos cut from the brochure (public/clients) shown with names in the Clients section
+- Logo wordmark uses Chillax font (Fontshare)
+- Admin dashboard at /admin (JWT email/password, single seeded admin, brute-force lockout, change password)
+- Every home section editable (text, lists, photos) + show/hide/reorder sections; booking form options; contact; footer
+- Photo uploads via Emergent object storage (/api/upload, served from /api/files/...)
+- Content stored as per-section overrides in Mongo `site_content`; site falls back to built-in defaults; "Restore original" per section
+- Price calculator page content/rates not yet editable from admin
+
+## Backlog
+- P1: Make price calculator rates editable in admin
+- P1: Save consultation requests to an admin inbox
+- P2: Project detail pages, WhatsApp button
+
 ## Placeholders
 Studio addresses, review texts, project names/ratings, idea counts, featured story, estimator rates, social links
 

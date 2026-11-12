@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
-import { STEPS } from "../../data/content";
 import { SectionHead } from "./Motion";
+import { useContent, list } from "../../lib/content";
 
-export const HowItWorks = () => (
+export const HowItWorks = () => {
+  const d = useContent("steps");
+  const STEPS = list(d.items);
+  return (
   <section className="py-20 md:py-32" data-testid="how-section">
     <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-      <SectionHead eyebrow="08 — How it works" title="Four calm steps to a finished home" />
+      <SectionHead eyebrow={d.eyebrow} title={d.title} />
       <div className="relative grid gap-10 md:grid-cols-4 md:gap-6">
         <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
           className="absolute left-0 right-0 top-6 hidden h-px origin-left bg-[#FEBD1C] md:block" />
@@ -19,4 +22,5 @@ export const HowItWorks = () => (
       </div>
     </div>
   </section>
-);
+  );
+};

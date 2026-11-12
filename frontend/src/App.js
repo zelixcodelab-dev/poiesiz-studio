@@ -22,26 +22,28 @@ import { Services } from "./components/site/Services";
 import { Ongoing } from "./components/site/Ongoing";
 import { BookDialog } from "./components/site/BookDialog";
 import PriceCalculator from "./pages/PriceCalculator";
+import AdminApp from "./admin/AdminApp";
+import { ContentProvider, useContent, list } from "./lib/content";
+import { SECTION_LABELS } from "./data/defaults";
 
-const Home = ({ onBook }) => (
-  <main>
-    <Hero />
-    <Marquee />
-    <Services />
-    <Projects />
-    <Featured />
-    <Trending />
-    <Estimator onBook={onBook} />
-    <Rooms />
-    <Styles />
-    <Vaastu onBook={onBook} />
-    <WhyUs />
-    <Ongoing />
-    <HowItWorks />
-    <Centres onBook={onBook} />
-    <Faq onBook={onBook} />
-  </main>
-);
+const SECTIONS = {
+  marquee: Marquee, services: Services, projects: Projects, featured: Featured, trending: Trending, estimator: Estimator,
+  rooms: Rooms, styles: Styles, clients: Vaastu, why: WhyUs, ongoing: Ongoing, how: HowItWorks, contact: Centres, faq: Faq,
+};
+
+const Home = ({ onBook }) => {
+  const saved = list(useContent("sections").items).filter((s) => SECTIONS[s?.id]);
+  const missing = Object.keys(SECTION_LABELS).filter((id) => !saved.some((s) => s.id === id)).map((id) => ({ id, visible: true }));
+  return (
+    <main>
+      <Hero />
+      {[...saved, ...missing].filter((s) => s.visible !== false).map((s) => {
+        const C = SECTIONS[s.id];
+        return <C key={s.id} onBook={onBook} />;
+      })}
+    </main>
+  );
+};
 
 const Shell = () => {
   const [open, setOpen] = useState(false);
@@ -81,7 +83,12 @@ const Shell = () => {
 function App() {
   return (
     <BrowserRouter>
-      <Shell />
+      <ContentProvider>
+        <Routes>
+          <Route path="/admin/*" element={<AdminApp />} />
+          <Route path="*" element={<Shell />} />
+        </Routes>
+      </ContentProvider>
     </BrowserRouter>
   );
 }

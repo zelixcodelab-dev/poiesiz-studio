@@ -17,6 +17,8 @@ from datetime import datetime, timezone
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
+from site_api import build_router, seed_admin  # noqa: E402
+
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
@@ -28,6 +30,10 @@ INDEXES: dict[str, list[IndexModel]] = {
         IndexModel([("id", ASCENDING)], name="id", unique=True),
         IndexModel([("timestamp", DESCENDING)], name="timestamp_desc"),
     ],
+    "users": [IndexModel([("email", ASCENDING)], name="email", unique=True)],
+    "login_attempts": [IndexModel([("identifier", ASCENDING)], name="identifier")],
+    "site_content": [IndexModel([("key", ASCENDING)], name="key", unique=True)],
+    "files": [IndexModel([("storage_path", ASCENDING)], name="storage_path")],
 }
 
 
@@ -88,11 +94,14 @@ async def get_status_checks(limit: int = Query(20, ge=1, le=100)):
 
 # Include the router in the main app
 app.include_router(api_router)
+app.include_router(build_router(db))
 
+_cors = os.environ.get('CORS_ORIGINS', '*').split(',')
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=[] if _cors == ['*'] else _cors,
+    allow_origin_regex=".*" if _cors == ['*'] else None,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -107,6 +116,7 @@ logger = logging.getLogger(__name__)
 @app.on_event("startup")
 async def start_index_build():
     app.state.index_task = asyncio.create_task(ensure_indexes())  # background: a big index build must not block boot
+    await seed_admin(db)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
