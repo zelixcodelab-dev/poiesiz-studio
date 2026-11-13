@@ -10,14 +10,14 @@ export const Rooms = () => {
   const [active, setActive] = useState("r0");
   const room = ROOMS.find((r) => r.key === active) ?? ROOMS[0] ?? { key: "r0", label: "", imgs: [] };
   return (
-    <section id="rooms" className="bg-[#F3EFEA] py-20 md:py-32" data-testid="rooms-section">
+    <section id="rooms" className="bg-[#E3E0D6] py-20 md:py-32" data-testid="rooms-section">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <SectionHead eyebrow={d.eyebrow} title={d.title} />
         <Reveal className="no-scrollbar -mx-5 mb-8 flex gap-2 overflow-x-auto px-5 md:mx-0 md:px-0">
           {ROOMS.map((r) => (
             <button key={r.key} onClick={() => setActive(r.key)} data-testid={`rooms-tab-${r.key}`}
-              className={`flex h-12 shrink-0 items-center gap-2 rounded-full px-5 text-sm transition-colors duration-300 ${active === r.key ? "bg-[#FEBD1C] text-white" : "bg-white text-[#1A1918] hover:bg-[#E5DEC9]"}`}>
-              {r.label}<span className={`font-mono text-xs ${active === r.key ? "text-[#111111]/70" : "text-[#6E6B65]"}`}>{r.count}</span>
+              className={`flex h-12 shrink-0 items-center gap-2 rounded-full px-5 text-sm transition-colors duration-300 ${active === r.key ? "bg-[#50321F] text-white" : "bg-white text-[#130C08] hover:bg-[#CFC8BA]"}`}>
+              {r.label}<span className={`font-mono text-xs ${active === r.key ? "text-white/70" : "text-[#6A5647]"}`}>{r.count}</span>
             </button>))}
         </Reveal>
         <div className="grid gap-3 md:grid-cols-4 md:grid-rows-2 md:h-[620px]" data-testid="rooms-gallery">

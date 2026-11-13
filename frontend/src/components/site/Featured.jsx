@@ -20,14 +20,14 @@ export const Featured = () => {
         </div>
         <Reveal delay={0.1} className="space-y-6 lg:col-span-5">
           <Eyebrow>{f.eyebrow}</Eyebrow>
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-[#1A1918] sm:text-4xl">{f.title} <span className="font-serif-it font-normal italic">{f.titleAccent}</span></h2>
-          <p className="text-lg leading-relaxed text-[#6E6B65]" data-testid="featured-desc">{f.text}</p>
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-[#130C08] sm:text-4xl">{f.title} <span className="font-serif-it font-normal italic">{f.titleAccent}</span></h2>
+          <p className="text-lg leading-relaxed text-[#6A5647]" data-testid="featured-desc">{f.text}</p>
           <div className="grid grid-cols-2 gap-3">
             {[f.image2, f.image3].filter(Boolean).map((src, i) => <img key={i} src={asset(src)} alt="" className="aspect-[4/3] w-full rounded-2xl object-cover" />)}
           </div>
-          <div className="flex flex-wrap gap-x-10 gap-y-4 border-t border-[#E5DEC9] pt-6">
+          <div className="flex flex-wrap gap-x-10 gap-y-4 border-t border-[#CFC8BA] pt-6">
             {list(f.facts).map((x, i) => (
-              <div key={i}><p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#6E6B65]">{x.label}</p><p className="mt-1 text-sm font-medium text-[#1A1918]">{x.value}</p></div>
+              <div key={i}><p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#6A5647]">{x.label}</p><p className="mt-1 text-sm font-medium text-[#130C08]">{x.value}</p></div>
             ))}
           </div>
         </Reveal>

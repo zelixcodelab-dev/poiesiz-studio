@@ -7,7 +7,7 @@ const SPAN = ["col-span-2 md:row-span-2", "", "", "", "", "col-span-2", "col-spa
 export const Ongoing = () => {
   const d = useContent("ongoing");
   return (
-  <section className="bg-[#F3EFEA] py-20 md:py-32" data-testid="ongoing-section">
+  <section className="bg-[#E3E0D6] py-20 md:py-32" data-testid="ongoing-section">
     <div className="mx-auto max-w-[1400px] px-5 md:px-10">
       <SectionHead eyebrow={d.eyebrow} title={d.title} sub={d.sub} />
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:auto-rows-[230px]">

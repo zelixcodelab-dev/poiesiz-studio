@@ -42,6 +42,16 @@ React (CRA) frontend only. framer-motion, lenis, shadcn accordion/dialog, sonner
 - Content stored as per-section overrides in Mongo `site_content`; site falls back to built-in defaults; "Restore original" per section
 - Price calculator page content/rates not yet editable from admin
 
+## Implemented (2026-11-13, iteration 7) — Calm editorial motion + warm palette (approved plan, Phase 1)
+- Warm palette: cream #ECE9E1/#E3E0D6 backgrounds, near-black brown #130C08 text/dark sections, deep brown #50321F accents, taupe lines; yellow only on logo + main buttons
+- Slower pacing (reveals 1.3–1.8s), hero photo settle (3s), staggered hero text, nav fades in last
+- RoundCta (outline pill + arrow circle, fill + arrow slide on hover, magnetic drift on desktop) on Clients, Contact, Footer, Project page CTAs
+- "View" pointer label over project grid (desktop only), slow 2.4s photo zooms, Styles caption lift
+- Parallax photos in Services + Why-us; heading word reveals fixed (observer on h2) and slowed; sub-text fades after heading
+- Letter-roll menu links; cream→brown page-change panels; brown intro screen
+- MotionConfig reducedMotion="user"
+- Phase 2 (admin motion controls) and Phase 3 (project page entrance sequences, hero video) not built yet
+
 ## Implemented (2026-11-13, iteration 6) — Motion & transitions (inspired by Dribbble Poliform shot, which is a static image)
 - First-visit intro curtain (logo + 0–100 counter, slides up; once per session)
 - Yellow page-change curtain wipe + content fade-up on every route change

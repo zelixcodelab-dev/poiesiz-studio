@@ -10,7 +10,7 @@ export const Reveal = ({ children, delay = 0, className = "", y = 28 }) => (
     initial={{ opacity: 0.001, y }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, amount: 0.12 }}
-    transition={{ duration: 0.9, delay, ease }}
+    transition={{ duration: 1.4, delay, ease }}
   >
     {children}
   </motion.div>
@@ -24,7 +24,7 @@ export const MaskLines = ({ lines, className = "", delay = 0.2, as: Tag = "h1", 
           className="block"
           initial={{ y: "105%" }}
           animate={{ y: "0%" }}
-          transition={{ duration: 1.1, delay: delay + i * 0.12, ease }}
+          transition={{ duration: 1.5, delay: delay + i * 0.18, ease }}
         >
           {line}
         </motion.span>
@@ -34,14 +34,16 @@ export const MaskLines = ({ lines, className = "", delay = 0.2, as: Tag = "h1", 
 );
 
 export const Eyebrow = ({ children, light }) => (
-  <p className={`font-mono text-xs uppercase tracking-[0.22em] ${light ? "text-[#FEBD1C]" : "text-[#8A6200]"}`}>{children}</p>
+  <p className={`font-mono text-xs uppercase tracking-[0.22em] ${light ? "text-[#D8C3A5]" : "text-[#50321F]"}`}>{children}</p>
 );
+
+const wordV = { hidden: { y: "105%" }, show: (i) => ({ y: "0%", transition: { duration: 1.3, delay: i * 0.08, ease } }) };
 
 const Words = ({ text }) => (
   <>
     {String(text).split(" ").map((w, i) => (
       <span key={i} className="inline-block overflow-hidden pb-[0.1em] align-bottom">
-        <motion.span className="inline-block" initial={{ y: "105%" }} whileInView={{ y: "0%" }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.9, delay: i * 0.06, ease }}>{w}&nbsp;</motion.span>
+        <motion.span className="inline-block" variants={wordV} custom={i}>{w}&nbsp;</motion.span>
       </span>
     ))}
   </>
@@ -51,8 +53,8 @@ export const SectionHead = ({ eyebrow, title, sub, light, right }) => (
   <Reveal className="mb-10 flex flex-col gap-6 md:mb-14 md:flex-row md:items-end md:justify-between">
     <div className="max-w-2xl space-y-4">
       <Eyebrow light={light}>{eyebrow}</Eyebrow>
-      <h2 className={`font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl ${light ? "text-[#FBF9F5]" : "text-[#1A1918]"}`}>{typeof title === "string" ? <Words text={title} /> : title}</h2>
-      {sub && <p className={`text-base md:text-lg ${light ? "text-[#D9D3C7]" : "text-[#6E6B65]"}`}>{sub}</p>}
+      <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.1 }} className={`font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl ${light ? "text-[#ECE9E1]" : "text-[#130C08]"}`}>{typeof title === "string" ? <Words text={title} /> : title}</motion.h2>
+      {sub && <motion.p initial={{ opacity: 0.001, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 1.2, delay: 0.35, ease }} className={`text-base md:text-lg ${light ? "text-[#D9D3C7]" : "text-[#6A5647]"}`}>{sub}</motion.p>}
     </div>
     {right}
   </Reveal>

@@ -11,8 +11,8 @@ export const ResultStep = ({ s, onBook, setS }) => {
   return (
     <div data-testid="calc-result-step">
       <StepTitle n={4} title="Your estimate is ready" sub={`${s.bhk} BHK · ${s.area.toLocaleString("en-IN")} sq ft · ${cur.label} finishes`} />
-      <div className="rounded-[28px] bg-[#1C1C1C] p-6 text-[#FBF9F5] md:p-10">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#FEBD1C]">Estimated range</p>
+      <div className="rounded-[28px] bg-[#50321F] p-6 text-[#ECE9E1] md:p-10">
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#D8C3A5]">Estimated range</p>
         <p className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-6xl" data-testid="calc-result-total">{cur.est.total ? `${lakh(cur.est.low)} – ${lakh(cur.est.high)}` : "₹0"}</p>
         <div className="mt-10 space-y-5">
           <p className="text-sm text-[#D9D3C7]">Same home, every finish level</p>
@@ -30,7 +30,7 @@ export const ResultStep = ({ s, onBook, setS }) => {
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <button onClick={onBook} className="flex-1 rounded-full bg-[#FEBD1C] py-4 font-medium text-white transition-colors duration-300 hover:bg-[#F0AC00]" data-testid="calc-result-book-btn">Get my exact, itemised quote</button>
       </div>
-      <p className="mt-4 text-xs text-[#6E6B65]">{note}</p>
+      <p className="mt-4 text-xs text-[#6A5647]">{note}</p>
     </div>
   );
 };

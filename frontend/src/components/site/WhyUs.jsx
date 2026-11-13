@@ -1,5 +1,6 @@
 import { Users, Hammer, Heart, Receipt, BadgeCheck } from "lucide-react";
 import { SectionHead, Reveal } from "./Motion";
+import { ParallaxImg } from "./Fx";
 import { useContent, list } from "../../lib/content";
 import { asset } from "../../lib/api";
 
@@ -18,12 +19,12 @@ export const WhyUs = () => {
           const big = i === 0;
           return (
             <Reveal key={w.title} delay={i * 0.06} className={`${SPANS[i]} ${big ? "md:col-span-2" : ""}`}>
-              <div className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-[24px] p-7 transition-transform duration-500 hover:-translate-y-1 ${big ? "min-h-[460px] text-white" : i === 3 ? "bg-[#1C1C1C] text-white" : "bg-[#F3EFEA] text-[#1A1918]"}`} data-testid={`why-card-${i}`}>
-                {big && <><img src={asset(d.image)} alt="" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#121212]/90 via-[#121212]/30 to-transparent" /></>}
-                <span className={`relative flex h-12 w-12 items-center justify-center rounded-full ${big || i === 3 ? "bg-white/15 text-[#FEBD1C]" : "bg-white text-[#8A6200]"}`}><I className="h-5 w-5" /></span>
+              <div className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-[24px] p-7 transition-transform duration-500 hover:-translate-y-1 ${big ? "min-h-[460px] text-white" : i === 3 ? "bg-[#50321F] text-white" : "bg-[#E3E0D6] text-[#130C08]"}`} data-testid={`why-card-${i}`}>
+                {big && <><div className="absolute inset-0"><ParallaxImg src={asset(d.image)} /></div><div className="absolute inset-0 bg-gradient-to-t from-[#130C08]/90 via-[#130C08]/30 to-transparent" /></>}
+                <span className={`relative flex h-12 w-12 items-center justify-center rounded-full ${big || i === 3 ? "bg-white/15 text-[#D8C3A5]" : "bg-white text-[#50321F]"}`}><I className="h-5 w-5" /></span>
                 <div className="relative mt-10 max-w-md">
                   <h3 className={`font-display font-semibold ${big ? "text-3xl md:text-4xl" : "text-xl"}`}>{w.title}</h3>
-                  <p className={`mt-2 ${big || i === 3 ? "text-[#E9E4DA]" : "text-[#6E6B65]"}`}>{w.text}</p>
+                  <p className={`mt-2 ${big || i === 3 ? "text-[#E9E4DA]" : "text-[#6A5647]"}`}>{w.text}</p>
                 </div>
               </div>
             </Reveal>

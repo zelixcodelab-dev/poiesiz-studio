@@ -8,7 +8,7 @@ export const Trending = () => {
   const d = useContent("trending");
   const row = useRef(null);
   const nudge = (d) => row.current?.scrollBy({ left: d * row.current.clientWidth * 0.8, behavior: "smooth" });
-  const btn = "flex h-12 w-12 items-center justify-center rounded-full border border-[#1A1918] text-[#1A1918] transition-colors duration-300 hover:bg-[#1A1918] hover:text-[#FBF9F5]";
+  const btn = "flex h-12 w-12 items-center justify-center rounded-full border border-[#130C08] text-[#130C08] transition-colors duration-300 hover:bg-[#130C08] hover:text-[#ECE9E1]";
 
   return (
     <section id="ideas" className="py-20 md:py-32" data-testid="trending-section">
@@ -22,12 +22,12 @@ export const Trending = () => {
             <article className="group" data-testid={`trending-card-${i}`}>
               <div className="reveal-img grid h-[340px] grid-cols-3 grid-rows-2 gap-2 overflow-hidden rounded-[22px]">
                 <div className="col-span-2 row-span-2 overflow-hidden"><img src={asset(list(t.imgs)[0])} alt={t.title} className="h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-105" /></div>
-                <div className="overflow-hidden"><img src={asset(list(t.imgs)[1])} alt="" className="h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-110" /></div>
-                <div className="overflow-hidden"><img src={asset(list(t.imgs)[2])} alt="" className="h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-110" /></div>
+                <div className="overflow-hidden"><img src={asset(list(t.imgs)[1])} alt="" className="h-full w-full object-cover transition-transform duration-[2.4s] ease-out group-hover:scale-105" /></div>
+                <div className="overflow-hidden"><img src={asset(list(t.imgs)[2])} alt="" className="h-full w-full object-cover transition-transform duration-[2.4s] ease-out group-hover:scale-105" /></div>
               </div>
               <div className="mt-4 flex items-center justify-between">
-                <h3 className="font-display text-xl font-semibold text-[#1A1918]">{t.title}</h3>
-                <span className="rounded-full bg-[#F3EFEA] px-3 py-1 text-xs text-[#6E6B65]">{t.tag}</span>
+                <h3 className="font-display text-xl font-semibold text-[#130C08]">{t.title}</h3>
+                <span className="rounded-full bg-[#E3E0D6] px-3 py-1 text-xs text-[#6A5647]">{t.tag}</span>
               </div>
             </article>
           </Reveal>

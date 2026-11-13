@@ -4,7 +4,7 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 import { useContent, list } from "../../lib/content";
 import { api, errText } from "../../lib/api";
 
-const field = "h-12 w-full rounded-xl border border-[#E5DEC9] bg-white px-4 text-[15px] text-[#1A1918] outline-none transition-colors duration-300 placeholder:text-[#8E8A82] focus:border-[#8A6200]";
+const field = "h-12 w-full rounded-xl border border-[#CFC8BA] bg-white px-4 text-[15px] text-[#130C08] outline-none transition-colors duration-300 placeholder:text-[#8E8A82] focus:border-[#50321F]";
 
 export const ConsultForm = ({ id = "hero" }) => {
   const fc = useContent("form");
@@ -36,9 +36,9 @@ export const ConsultForm = ({ id = "hero" }) => {
     return (
       <div className="flex flex-col items-start gap-4 py-6" data-testid={`${id}-consult-success`}>
         <CheckCircle2 className="h-10 w-10 text-[#5E7A4C]" />
-        <h3 className="font-display text-2xl font-semibold text-[#1A1918]">Your request is in.</h3>
-        <p className="text-[#6E6B65]">Thank you, {form.name}. A designer will reach you on +91 {form.phone} to plan your {form.type} in {form.city}.</p>
-        <button type="button" onClick={() => { setDone(false); setForm({ name: "", phone: "", city: "", type: "Apartment" }); }} className="text-sm font-medium text-[#8A6200] underline-offset-4 hover:underline" data-testid={`${id}-consult-reset-btn`}>Book for another home</button>
+        <h3 className="font-display text-2xl font-semibold text-[#130C08]">Your request is in.</h3>
+        <p className="text-[#6A5647]">Thank you, {form.name}. A designer will reach you on +91 {form.phone} to plan your {form.type} in {form.city}.</p>
+        <button type="button" onClick={() => { setDone(false); setForm({ name: "", phone: "", city: "", type: "Apartment" }); }} className="text-sm font-medium text-[#50321F] underline-offset-4 hover:underline" data-testid={`${id}-consult-reset-btn`}>Book for another home</button>
       </div>
     );
   }
@@ -47,7 +47,7 @@ export const ConsultForm = ({ id = "hero" }) => {
     <form onSubmit={submit} className="space-y-3" data-testid={`${id}-consult-form`}>
       <input className={field} placeholder="Your name" value={form.name} onChange={set("name")} data-testid={`${id}-name-input`} />
       <div className="flex">
-        <span className="flex h-12 items-center rounded-l-xl border border-r-0 border-[#E5DEC9] bg-[#F3EFEA] px-3 text-sm text-[#6E6B65]">+91</span>
+        <span className="flex h-12 items-center rounded-l-xl border border-r-0 border-[#CFC8BA] bg-[#E3E0D6] px-3 text-sm text-[#6A5647]">+91</span>
         <input className={`${field} rounded-l-none`} inputMode="numeric" maxLength={10} placeholder="Mobile number" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value.replace(/\D/g, "") })} data-testid={`${id}-phone-input`} />
       </div>
       <select className={field} value={form.city} onChange={set("city")} data-testid={`${id}-city-select`}>
@@ -57,7 +57,7 @@ export const ConsultForm = ({ id = "hero" }) => {
       <div className="flex flex-wrap gap-2 pt-1">
         {PROPERTY_TYPES.map((t) => (
           <button type="button" key={t} onClick={() => setForm({ ...form, type: t })}
-            className={`h-10 rounded-full border px-4 text-sm transition-colors duration-300 ${form.type === t ? "border-[#1C1C1C] bg-[#1C1C1C] text-[#FBF9F5]" : "border-[#E5DEC9] bg-white text-[#1A1918] hover:border-[#1C1C1C]"}`}
+            className={`h-10 rounded-full border px-4 text-sm transition-colors duration-300 ${form.type === t ? "border-[#50321F] bg-[#50321F] text-[#ECE9E1]" : "border-[#CFC8BA] bg-white text-[#130C08] hover:border-[#50321F]"}`}
             data-testid={`${id}-type-${t.replace(/\s/g, "").toLowerCase()}`}>{t}</button>
         ))}
       </div>
@@ -65,7 +65,7 @@ export const ConsultForm = ({ id = "hero" }) => {
         Book Free Consultation
         <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
       </button>
-      <p className="text-center text-xs text-[#6E6B65]">No spam. We only call to plan your consultation.</p>
+      <p className="text-center text-xs text-[#6A5647]">No spam. We only call to plan your consultation.</p>
     </form>
   );
 };
