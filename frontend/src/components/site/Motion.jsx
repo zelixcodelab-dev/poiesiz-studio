@@ -34,7 +34,7 @@ export const MaskLines = ({ lines, className = "", delay = 0.2, as: Tag = "h1", 
 );
 
 export const Eyebrow = ({ children, light }) => (
-  <p className={`font-mono text-xs uppercase tracking-[0.22em] ${light ? "text-[#D8C3A5]" : "text-[#50321F]"}`}>{children}</p>
+  <p className={`font-mono text-xs lowercase tracking-[0.14em] ${light ? "text-[#D8C3A5]" : "text-[#50321F]"}`}>[{children}]</p>
 );
 
 const wordV = { hidden: { y: "105%" }, show: (i) => ({ y: "0%", transition: { duration: 1.3, delay: i * 0.08, ease } }) };
@@ -50,10 +50,11 @@ const Words = ({ text }) => (
 );
 
 export const SectionHead = ({ eyebrow, title, sub, light, right }) => (
-  <Reveal className="mb-10 flex flex-col gap-6 md:mb-14 md:flex-row md:items-end md:justify-between">
-    <div className="max-w-2xl space-y-4">
+  <Reveal className="relative mb-10 flex flex-col gap-6 pb-8 md:mb-14 md:flex-row md:items-end md:justify-between">
+    <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 1.8, delay: 0.2, ease }} className={`absolute inset-x-0 bottom-0 h-px origin-left ${light ? "bg-white/20" : "bg-[#CFC8BA]"}`} />
+    <div className="max-w-3xl space-y-4">
       <Eyebrow light={light}>{eyebrow}</Eyebrow>
-      <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.1 }} className={`font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl ${light ? "text-[#ECE9E1]" : "text-[#130C08]"}`}>{typeof title === "string" ? <Words text={title} /> : title}</motion.h2>
+      <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.1 }} className={`font-display text-4xl font-semibold leading-[0.98] tracking-[-0.035em] sm:text-5xl lg:text-6xl ${light ? "text-[#ECE9E1]" : "text-[#130C08]"}`}>{typeof title === "string" ? <Words text={title} /> : title}</motion.h2>
       {sub && <motion.p initial={{ opacity: 0.001, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 1.2, delay: 0.35, ease }} className={`text-base md:text-lg ${light ? "text-[#D9D3C7]" : "text-[#6A5647]"}`}>{sub}</motion.p>}
     </div>
     {right}

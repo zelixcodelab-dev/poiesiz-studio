@@ -15,6 +15,9 @@ html.lenis, html.lenis body { height: auto; }
 .marquee-track { animation: marquee 60s linear infinite; }
 .marquee-track:hover { animation-play-state: paused; }
 
+@keyframes scroll-tick { 0% { transform: translateY(-100%); } 100% { transform: translateY(200%); } }
+.scroll-tick { animation: scroll-tick 2.2s cubic-bezier(0.76, 0, 0.24, 1) infinite; }
+
 ::selection { background: #50321F; color: #ECE9E1; }
 
 .reveal-ready .reveal-img:not(.is-in) { clip-path: inset(100% 0 0 0); }

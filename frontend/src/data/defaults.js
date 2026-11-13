@@ -50,9 +50,9 @@ export const DEFAULTS = {
   why: { eyebrow: "Why POIESIZ", title: "Trust built into every detail", image: "/projects/thrissur-courtyard.jpg", items: WHY },
   reviews: { eyebrow: "Google reviews", title: "What our clients say", sub: "", rating: "", count: "", items: [] },
   ongoing: { eyebrow: "On-going projects", title: "On site right now", sub: "A look at work in progress across our current residential and commercial projects.", items: ONGOING },
-  steps: { eyebrow: "How it works", title: "Four calm steps to a finished home", items: STEPS },
+  steps: { eyebrow: "How it works", title: "Our process", items: STEPS },
   faqs: { title: "Good questions, honest answers", items: FAQS },
-  contact: { eyebrow: "Contact us", title: "Visit our office in Palarivattom", sub: "Drop by, call or write to us to discuss your home, office or retail project.", ...CONTACT, mapQuery: "Pallissery Road, Palarivattom, Ernakulam 682025" },
+  contact: { eyebrow: "Start your project", kicker: "Spaces shape how you live.", bigTitle: "You name it, we *transform* it.", photos: [], title: "Visit our office in Palarivattom", sub: "Drop by, call or write to us to discuss your home, office or retail project.", ...CONTACT, mapQuery: "Pallissery Road, Palarivattom, Ernakulam 682025" },
   footer: { headline: "Let's start with a", headlineAccent: "conversation.", tagline: "Modern & custom interiors. Turnkey design and execution, based in Kochi, Kerala.", cities: FOOTER_CITIES },
   form: { cities: CITIES, types: PROPERTY_TYPES },
   seo: {

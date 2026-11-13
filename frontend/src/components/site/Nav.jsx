@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Logo } from "./Logo";
 import { RollText } from "./Fx";
 
-const SECTIONS = [["Ideas", "#ideas"], ["Projects", "#projects"], ["Rooms", "#rooms"], ["Services", "#services"], ["Contact", "#studios"], ["FAQs", "#faq"]];
+const SECTIONS = [["Ideas", "#ideas"], ["Projects", "#projects"], ["Process", "#process"], ["Services", "#services"], ["Contact", "#studios"], ["FAQs", "#faq"]];
 
 export const Nav = ({ onBook, home = true }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -23,9 +23,9 @@ export const Nav = ({ onBook, home = true }) => {
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 md:h-20 md:px-10">
         <Logo light={!solid} />
         <nav className="hidden items-center gap-8 lg:flex">
-          <Link to="/price-calculator" className={`text-sm ${solid ? "text-[#130C08]" : "text-[#ECE9E1]"}`} data-testid="nav-link-calculator"><RollText text="Price Calculator" alt={solid ? "#50321F" : "#D8C3A5"} /></Link>
+          <Link to="/price-calculator" className={`text-[12px] uppercase tracking-[0.14em] ${solid ? "text-[#130C08]" : "text-[#ECE9E1]"}`} data-testid="nav-link-calculator"><RollText text="Price Calculator" alt={solid ? "#50321F" : "#D8C3A5"} /></Link>
           {LINKS.map(([l, h]) => (
-            <a key={h} href={h} className={`text-sm ${solid ? "text-[#130C08]" : "text-[#ECE9E1]"}`} data-testid={`nav-link-${l.toLowerCase()}`}><RollText text={l} alt={solid ? "#50321F" : "#D8C3A5"} /></a>
+            <a key={h} href={h} className={`text-[12px] uppercase tracking-[0.14em] ${solid ? "text-[#130C08]" : "text-[#ECE9E1]"}`} data-testid={`nav-link-${l.toLowerCase()}`}><RollText text={l} alt={solid ? "#50321F" : "#D8C3A5"} /></a>
           ))}
         </nav>
         <div className="flex items-center gap-3">

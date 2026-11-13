@@ -101,10 +101,10 @@ export const WHY = [
 ];
 
 export const STEPS = [
-  { title: "Free consultation", text: "Share your space, style and budget with our team, and walk through ideas together." },
-  { title: "Conceptual design", text: "We develop a concept tailored to your requirements and space constraints." },
-  { title: "Execution & MEP", text: "Interior execution along with electrical, plumbing and air-conditioning by our in-house team." },
-  { title: "Turnkey handover", text: "Your space is handed over ready to use, with lifetime assistance afterwards." },
+  { title: "Free consultation", text: "Share your space, style and budget with our team, and walk through ideas together.", outcome: "A clear brief and direction.", img: "/projects/thrissur-courtyard.jpg" },
+  { title: "Conceptual design", text: "We develop a concept tailored to your requirements and space constraints.", outcome: "A fully developed design concept.", img: "/projects/vinod-dining.jpg" },
+  { title: "Execution & MEP", text: "Interior execution along with electrical, plumbing and air-conditioning by our in-house team.", outcome: "Precise work on site.", img: "/projects/ongoing-site.jpg" },
+  { title: "Turnkey handover", text: "Your space is handed over ready to use, with lifetime assistance afterwards.", outcome: "A refined, finished space.", img: "/projects/indrajith-1.jpg" },
 ];
 
 export const REVIEWS = [

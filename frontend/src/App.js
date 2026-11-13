@@ -40,7 +40,7 @@ const Home = ({ onBook }) => {
   const sections = orderSections(useContent("sections").items).filter((s) => SECTIONS[s.id]);
   return (
     <main>
-      <Hero />
+      <Hero onBook={onBook} />
       {sections.filter((s) => s.visible !== false).map((s) => {
         const C = SECTIONS[s.id];
         return <C key={s.id} onBook={onBook} />;

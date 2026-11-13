@@ -1,65 +1,63 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
-import { Sparkles, ReceiptText, ShieldCheck } from "lucide-react";
-import { IMG, USPS } from "../../data/content";
-import { MaskLines, rich } from "./Motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { IMG } from "../../data/content";
+import { rich } from "./Motion";
 import { useContent, list } from "../../lib/content";
 import { asset } from "../../lib/api";
-import { ConsultForm } from "./ConsultForm";
+import { RoundCta } from "./Fx";
 
-const ICONS = [Sparkles, ReceiptText, ShieldCheck];
+const ease = [0.22, 1, 0.36, 1];
 
-export const Hero = () => {
+const HeroLines = ({ lines }) => (
+  <h1 className="font-display text-[15vw] font-semibold leading-[0.9] tracking-[-0.045em] text-[#ECE9E1] md:text-[9.5vw] lg:text-[8.4vw]" data-testid="hero-headline">
+    {lines.map((l, i) => (
+      <span key={i} className={`block overflow-hidden pb-[0.06em] ${i === lines.length - 1 && i > 0 ? "pl-[14vw] md:pl-[22vw]" : ""}`}>
+        <motion.span className="block" initial={{ y: "108%" }} animate={{ y: "0%" }} transition={{ duration: 1.6, delay: 0.35 + i * 0.16, ease }}>
+          {rich(l, "font-serif-it font-normal italic text-[#D8C3A5]")}
+        </motion.span>
+      </span>
+    ))}
+  </h1>
+);
+
+const fade = (delay) => ({ initial: { opacity: 0, y: 14 }, animate: { opacity: 1, y: 0 }, transition: { duration: 1.3, delay, ease } });
+
+export const Hero = ({ onBook }) => {
   const h = useContent("hero");
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
-  const imgScale = useTransform(scrollYProgress, [0, 1], [1.08, 1.2]);
-  const rx = useSpring(useMotionValue(0), { stiffness: 120, damping: 18 });
-  const ry = useSpring(useMotionValue(0), { stiffness: 120, damping: 18 });
-
-  const tilt = (e) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    ry.set(((e.clientX - r.left) / r.width - 0.5) * 8);
-    rx.set(-((e.clientY - r.top) / r.height - 0.5) * 8);
-  };
+  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-18%"]);
+  const textO = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
-    <section id="top" ref={ref} className="relative min-h-[100svh] overflow-hidden bg-[#130C08]" data-testid="hero-section">
-      <motion.div initial={{ scale: 1.18 }} animate={{ scale: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0">
-        <motion.img src={asset(h.image) || IMG.hero} alt="Interior by POIESIZ" style={{ y: imgY, scale: imgScale }} className="absolute inset-0 h-full w-full object-cover" />
+    <section id="top" ref={ref} className="relative h-[100svh] min-h-[640px] overflow-hidden bg-[#130C08]" data-testid="hero-section">
+      <motion.div initial={{ scale: 1.2 }} animate={{ scale: 1 }} transition={{ duration: 3.2, ease }} className="absolute inset-0">
+        <motion.img src={asset(h.image) || IMG.hero} alt="Interior by POIESIZ" style={{ y: imgY, scale: 1.1 }} className="absolute inset-0 h-full w-full object-cover" />
       </motion.div>
-      <div className="absolute inset-0 bg-[#130C08]/55" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#130C08]/80 via-transparent to-transparent" />
-      <div className="relative mx-auto grid max-w-[1400px] gap-12 px-5 pb-16 pt-32 md:px-10 lg:grid-cols-12 lg:items-end lg:pb-24 lg:pt-40">
-        <div className="lg:col-span-7">
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.1 }} className="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-[#D8C3A5]">{h.eyebrow}</motion.p>
-          <MaskLines testId="hero-headline" className="font-display text-[2.6rem] font-semibold leading-[1.02] tracking-tight text-[#ECE9E1] sm:text-6xl lg:text-[5.4rem]"
-            lines={list(h.lines).map((l) => rich(l, "font-serif-it font-normal italic text-[#D8C3A5]"))} />
-          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.3, delay: 1.1, ease: [0.22, 1, 0.36, 1] }} className="mt-8 max-w-lg text-base text-[#E9E4DA] md:text-lg">
-            {h.sub}
-          </motion.p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            {list(h.usps).map((u, i) => {
-              const I = ICONS[i % ICONS.length];
-              return (
-                <motion.span key={u} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4 + i * 0.15, duration: 1 }} className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-[#ECE9E1] backdrop-blur-md" data-testid={`hero-usp-${i}`}>
-                  <I className="h-4 w-4 text-[#D8C3A5]" /> {u}
-                </motion.span>
-              );
-            })}
-          </div>
-        </div>
-        <div className="lg:col-span-5" style={{ perspective: 1200 }}>
-          <motion.div id="consult" onMouseMove={tilt} onMouseLeave={() => { rx.set(0); ry.set(0); }} style={{ rotateX: rx, rotateY: ry }}
-            initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.4, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
-            className="rounded-[28px] bg-[#ECE9E1] p-6 shadow-[0_40px_120px_-30px_rgba(0,0,0,0.6)] md:p-8" data-testid="hero-form-card">
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#50321F]">Free · No obligation</p>
-            <h2 className="mb-5 mt-2 font-display text-2xl font-semibold text-[#130C08]">{h.formTitle}</h2>
-            <ConsultForm id="hero" />
+      <div className="absolute inset-0 bg-[#130C08]/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#130C08]/85 via-[#130C08]/10 to-[#130C08]/30" />
+      <motion.div style={{ y: textY, opacity: textO }} className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-5 pb-6 md:px-10 md:pb-10">
+        <motion.p {...fade(0.2)} className="mb-5 font-mono text-xs lowercase tracking-[0.14em] text-[#D8C3A5]" data-testid="hero-eyebrow">[{h.eyebrow}]</motion.p>
+        <HeroLines lines={list(h.lines)} />
+        <div className="relative mt-8 grid gap-6 pt-6 md:grid-cols-12 md:items-start">
+          <motion.span initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.8, delay: 1, ease }} className="absolute inset-x-0 top-0 h-px origin-left bg-[#ECE9E1]/35" />
+          <motion.a {...fade(1.3)} href="#process" className="hidden items-center gap-3 font-mono text-xs lowercase tracking-[0.14em] text-[#ECE9E1]/80 md:col-span-3 md:flex" data-testid="hero-scroll-down">
+            <span className="relative block h-8 w-px overflow-hidden bg-[#ECE9E1]/25"><span className="scroll-tick absolute inset-x-0 top-0 h-1/2 bg-[#ECE9E1]" /></span>[scroll down]
+          </motion.a>
+          <motion.div {...fade(1.45)} className="md:col-span-5">
+            <p className="max-w-md text-sm leading-relaxed text-[#E9E4DA] md:text-base" data-testid="hero-sub">{h.sub}</p>
+            {list(h.usps).length > 0 && <p className="mt-3 font-mono text-[11px] lowercase tracking-[0.12em] text-[#D8C3A5]">{list(h.usps).join("  ·  ")}</p>}
+          </motion.div>
+          <motion.div {...fade(1.6)} className="flex flex-wrap items-center gap-6 md:col-span-4 md:justify-end">
+            <RoundCta dark onClick={onBook} testId="hero-quote-btn">Get a quote</RoundCta>
+            <div className="flex gap-4 font-mono text-xs lowercase tracking-[0.12em] text-[#ECE9E1]/80">
+              <a href="#process" className="link-line hover:text-[#ECE9E1]" data-testid="hero-link-process">our process</a>
+              <a href="#projects" className="link-line hover:text-[#ECE9E1]" data-testid="hero-link-work">our work</a>
+            </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

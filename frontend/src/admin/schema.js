@@ -61,14 +61,16 @@ export const SCHEMA = [
   ] },
   { key: "steps", label: "How it works", fields: [
     t("eyebrow", "Small heading"), t("title", "Title"),
-    { name: "items", label: "Steps", type: "list", itemLabel: "title", fields: [t("title", "Step"), t("text", "Text", "textarea")] },
+    { name: "items", label: "Steps", type: "list", itemLabel: "title", fields: [t("title", "Step"), t("text", "Text", "textarea"), t("outcome", "Outcome (short line)"), t("img", "Step photo", "image")] },
   ] },
   { key: "faqs", label: "FAQs", fields: [
     t("title", "Title"),
     { name: "items", label: "Questions", type: "list", itemLabel: "q", fields: [t("q", "Question"), t("a", "Answer", "textarea")] },
   ] },
   { key: "contact", label: "Contact details", fields: [
-    t("eyebrow", "Small heading"), t("title", "Title"), t("sub", "Intro", "textarea"),
+    t("eyebrow", "Small heading"), t("kicker", "Short line above big headline"),
+    t("bigTitle", "Big closing headline (wrap a word in *stars* for italic)"), { name: "photos", label: "Closing photo row (up to 4)", type: "images" },
+    t("title", "Title"), t("sub", "Intro", "textarea"),
     { name: "phones", label: "Phone numbers", type: "strings" }, t("email", "Email"), t("address", "Address", "textarea"),
     t("website", "Website (without https://)"), t("mapQuery", "Map location search text"),
   ] },

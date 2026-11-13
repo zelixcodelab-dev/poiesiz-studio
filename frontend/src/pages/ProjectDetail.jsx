@@ -50,24 +50,32 @@ export default function ProjectDetail({ onBook }) {
   const facts = [["Type", p.type], ["Location", p.place], ["Status", p.status]].filter(([, v]) => v);
 
   return (
-    <article className="min-h-screen pb-24 pt-28 md:pt-36" data-testid="project-detail-page">
-      <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-        <Link to="/#projects" className="inline-flex items-center gap-2 text-sm text-[#6A5647] hover:text-[#130C08]" data-testid="project-back-link"><ArrowLeft className="h-4 w-4" />All projects</Link>
-        <div className="mt-6 grid gap-8 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-8">
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#50321F]">{p.label}</p>
-            <MaskLines as="h1" testId="project-title" className="mt-3 font-display text-4xl font-semibold leading-[1.04] tracking-tight text-[#130C08] sm:text-5xl lg:text-6xl" lines={[p.name]} />
-            {p.place && <p className="mt-4 flex items-center gap-2 text-[#6A5647]"><MapPin className="h-4 w-4" />{p.place}</p>}
-          </div>
-          <div className="flex flex-wrap gap-x-10 gap-y-4 border-t border-[#CFC8BA] pt-6 lg:col-span-4">
-            {facts.map(([k, v]) => <div key={k}><p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#6A5647]">{k}</p><p className="mt-1 font-medium text-[#130C08]">{v}</p></div>)}
-          </div>
-        </div>
+    <article className="min-h-screen pb-24" data-testid="project-detail-page">
+      <section className="relative h-[100svh] min-h-[600px] overflow-hidden bg-[#130C08]">
         {imgs[0] && (
-          <motion.button initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.2 }} onClick={() => setOpen(0)} className="mt-10 block aspect-[16/9] w-full overflow-hidden rounded-[28px]" data-testid="project-hero-image">
-            <img src={asset(imgs[0])} alt={p.name} className="h-full w-full object-cover transition-transform duration-[2.4s] ease-out hover:scale-105" />
+          <motion.button initial={{ scale: 1.18 }} animate={{ scale: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1] }} onClick={() => setOpen(0)} className="absolute inset-0 block h-full w-full" aria-label="Open photo" data-testid="project-hero-image">
+            <img src={asset(imgs[0])} alt={p.name} className="h-full w-full object-cover" />
           </motion.button>
         )}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#130C08]/85 via-[#130C08]/20 to-[#130C08]/40" />
+        <div className="pointer-events-none relative mx-auto flex h-full max-w-[1600px] flex-col justify-between px-5 pb-8 pt-24 md:px-10 md:pb-10 md:pt-28">
+          <Link to="/#projects" className="pointer-events-auto inline-flex w-fit items-center gap-2 font-mono text-xs lowercase tracking-[0.12em] text-[#ECE9E1]/85 hover:text-[#ECE9E1]" data-testid="project-back-link"><ArrowLeft className="h-4 w-4" />[all projects]</Link>
+          <div>
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.3 }} className="font-mono text-xs lowercase tracking-[0.14em] text-[#D8C3A5]">[{p.label}]</motion.p>
+            <MaskLines as="h1" testId="project-title" className="mt-4 font-display text-[12vw] font-semibold leading-[0.9] tracking-[-0.045em] text-[#ECE9E1] md:text-[7.5vw]" lines={[p.name]} />
+            <div className="relative mt-8 flex flex-wrap items-end gap-x-12 gap-y-4 pt-6">
+              <motion.span initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-x-0 top-0 h-px origin-left bg-[#ECE9E1]/35" />
+              {facts.map(([k, v], i) => (
+                <motion.div key={k} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 1.1 + i * 0.12 }} data-testid={`project-fact-${k.toLowerCase()}`}>
+                  <p className="font-mono text-[11px] lowercase tracking-[0.12em] text-[#D8C3A5]">[{k}]</p>
+                  <p className="mt-1 flex items-center gap-2 font-medium text-[#ECE9E1]">{k === "Location" && <MapPin className="h-4 w-4" />}{v}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         {p.description && <Reveal className="mx-auto mt-14 max-w-3xl"><p className="text-lg leading-relaxed text-[#130C08] md:text-xl" data-testid="project-description">{p.description}</p></Reveal>}
         {imgs.length > 1 && (
           <div className="mt-14 columns-1 gap-4 sm:columns-2 lg:columns-3" data-testid="project-gallery">
