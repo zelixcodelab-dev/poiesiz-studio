@@ -44,6 +44,14 @@ export const DEFAULTS = {
   contact: { eyebrow: "Contact us", title: "Visit our office in Palarivattom", sub: "Drop by, call or write to us to discuss your home, office or retail project.", ...CONTACT, mapQuery: "Pallissery Road, Palarivattom, Ernakulam 682025" },
   footer: { headline: "Let's start with a", headlineAccent: "conversation.", tagline: "Modern & custom interiors. Turnkey design and execution, based in Kochi, Kerala.", cities: FOOTER_CITIES },
   form: { cities: CITIES, types: PROPERTY_TYPES },
+  seo: {
+    homeTitle: "Interior Designers in Kochi | POIESIZ Interiors",
+    homeDescription: "Turnkey interior design and execution in Kochi, Kerala for luxury homes, flats, offices and retail shops, from first concept to final handover.",
+    keywords: "interior designers Kochi, turnkey interiors Kerala, home interiors Ernakulam, office interiors Kochi, commercial interiors Kerala",
+    calculatorTitle: "Interior Cost Calculator Kochi | POIESIZ Interiors",
+    calculatorDescription: "Estimate the cost of your home or office interiors room by room, by finish level, with the POIESIZ Interiors price calculator.",
+    projectSuffix: " | POIESIZ Interiors Projects",
+  },
   pricing: {
     tiers: TIERS, rooms: ROOM_ITEMS, kitchenShapes: KITCHEN_SHAPES, addons: ADDONS,
     note: "Indicative range only. Our team confirms the final price after measuring your space.",

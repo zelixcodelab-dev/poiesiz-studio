@@ -1,0 +1,16 @@
+# POIESIZ Interiors
+
+> Modern & custom interiors. A Kochi-based turnkey contracting company specialised in interior design and execution for residential and commercial spaces in Kerala.
+
+## Services
+- Complete turnkey services: design, interior execution and MEP services such as electrical, plumbing and air conditioning
+- Residential interiors: luxury homes, penthouses and flats
+- Commercial interiors: retail shops, showrooms and commercial buildings
+- Office interiors: cabins, bay areas, receptions, meeting and conference rooms, cubicles and pantry
+
+## Key pages
+- /: Home, with services, projects, ideas by room and style, clients, process, contact and FAQs
+- /price-calculator: Step-by-step interior cost estimator
+- /projects/chai-bazaar: Chai Bazaar retail shop for Kannan Devan Hills Plantations, Munnar
+- /projects/cubespace: Cubespace office interior, Kakkanad, Ernakulam
+- /projects/mr-vinod-s-residence: Residence interior, Aluva

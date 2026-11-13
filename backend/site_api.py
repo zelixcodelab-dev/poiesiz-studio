@@ -15,7 +15,7 @@ from pydantic import BaseModel, Field
 logger = logging.getLogger(__name__)
 JWT_ALGORITHM = "HS256"
 CONTENT_KEYS = {"sections", "hero", "marquee", "services", "projects", "featured", "trending", "rooms", "styles",
-                "clients", "why", "ongoing", "steps", "faqs", "contact", "footer", "form", "pricing"}
+                "clients", "why", "ongoing", "steps", "faqs", "contact", "footer", "form", "pricing", "seo"}
 ENQUIRY_STATUSES = {"new", "called", "closed", "archived"}
 IMAGE_TYPES = {"image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "image/gif": "gif", "image/svg+xml": "svg"}
 STORAGE_BASE = (os.environ.get("INTEGRATION_PROXY_URL") or "").strip() or "https://integrations.emergentagent.com"

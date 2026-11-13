@@ -42,6 +42,13 @@ React (CRA) frontend only. framer-motion, lenis, shadcn accordion/dialog, sonner
 - Content stored as per-section overrides in Mongo `site_content`; site falls back to built-in defaults; "Restore original" per section
 - Price calculator page content/rates not yet editable from admin
 
+## Implemented (2026-11-13, iteration 8) — SEO
+- Admin "SEO (Google search)" page: home title/description, keywords, calculator title/description, project title suffix (content key `seo`)
+- Per-route title + meta description/OG/Twitter updated client-side (lib/seo.js); project pages use project name + description
+- Static head: title, description, keywords, robots, OG/Twitter (no url/image — no production domain yet), apple-touch-icon, JSON-LD HomeAndConstructionBusiness (no contact facts), noscript content, lang en-IN
+- public/robots.txt (AI crawler group, Disallow /api/ and /admin), public/llms.txt; sitemap.xml + canonical pending production domain
+- Pending confirmation: phone, address, email (admin Contact currently shows Bengaluru/placeholder values), social links, share image
+
 ## Implemented (2026-11-13, iteration 7) — Calm editorial motion + warm palette (approved plan, Phase 1)
 - Warm palette: cream #ECE9E1/#E3E0D6 backgrounds, near-black brown #130C08 text/dark sections, deep brown #50321F accents, taupe lines; yellow only on logo + main buttons
 - Slower pacing (reveals 1.3–1.8s), hero photo settle (3s), staggered hero text, nav fades in last

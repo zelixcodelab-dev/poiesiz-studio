@@ -69,6 +69,12 @@ export const SCHEMA = [
     t("headline", "Headline"), t("headlineAccent", "Headline (italic part)"), t("tagline", "Tagline", "textarea"),
     { name: "cities", label: "Areas served", type: "strings" },
   ] },
+  { key: "seo", label: "SEO (Google search)", hint: "What Google and link previews show. Titles: 50–60 characters. Descriptions: 150–160 characters.", fields: [
+    t("homeTitle", "Home page title"), t("homeDescription", "Home page description", "textarea"),
+    t("keywords", "Keywords (comma separated)", "textarea"),
+    t("calculatorTitle", "Price calculator page title"), t("calculatorDescription", "Price calculator page description", "textarea"),
+    t("projectSuffix", "Text added after each project name in its page title"),
+  ] },
   { key: "form", label: "Booking form options", fields: [{ name: "cities", label: "Cities", type: "strings" }, { name: "types", label: "Property types", type: "strings" }] },
   { key: "pricing", label: "Price calculator rates", hint: "All room and fixed prices are in lakhs (₹1L = ₹1,00,000). Multipliers: 1 = base price, 1.6 = 60% more.", fields: [
     { name: "tiers", label: "Finish levels", type: "list", itemLabel: "label", fields: [

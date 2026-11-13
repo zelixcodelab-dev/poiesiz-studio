@@ -23,6 +23,7 @@ import { Ongoing } from "./components/site/Ongoing";
 import { BookDialog } from "./components/site/BookDialog";
 import { Intro, RouteCurtain, useImageReveal } from "./components/site/Transitions";
 import { motion, MotionConfig } from "framer-motion";
+import { useSeo } from "./lib/seo";
 import PriceCalculator from "./pages/PriceCalculator";
 import ProjectDetail from "./pages/ProjectDetail";
 import AdminApp from "./admin/AdminApp";
@@ -69,6 +70,7 @@ const Shell = () => {
   }, [pathname, hash]);
 
   useImageReveal(pathname);
+  useSeo(pathname);
 
   return (
     <MotionConfig reducedMotion="user">
