@@ -49,18 +49,18 @@ export const Projects = () => {
   }, [list.length, distMv]);
 
   const open = (p) => nav(`/projects/${slug(p.name)}`);
-  const filters = (
+  const filters = (m) => (
     <div className="flex flex-wrap gap-2">{FILTERS.map((f) => (
-      <button key={f} onClick={() => setCity(f)} data-testid={`projects-filter-${f.toLowerCase()}`}
+      <button key={f} onClick={() => setCity(f)} data-testid={`projects-filter-${f.toLowerCase()}${m}`}
         className={`h-9 rounded-full border px-4 text-xs transition-colors duration-300 ${city === f ? "border-[#130C08] bg-[#130C08] text-[#ECE9E1]" : "border-[#CFC8BA] text-[#130C08] hover:border-[#130C08]"}`}>{f}</button>))}</div>
   );
-  const head = (
+  const head = (m = "") => (
     <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-5 px-5 md:flex-row md:items-end md:justify-between md:px-10">
       <div>
         <Eyebrow>{d.eyebrow}</Eyebrow>
-        <h2 className="mt-4 font-display text-4xl font-semibold leading-[0.95] tracking-[-0.035em] text-[#130C08] md:text-6xl lg:text-7xl" data-testid="projects-title">{d.title}</h2>
+        <h2 className="mt-4 font-display text-4xl font-semibold leading-[0.95] tracking-[-0.035em] text-[#130C08] md:text-6xl lg:text-7xl" data-testid={`projects-title${m}`}>{d.title}</h2>
       </div>
-      {filters}
+      {filters(m)}
     </div>
   );
 
@@ -68,7 +68,7 @@ export const Projects = () => {
     <section id="projects" data-testid="projects-section">
       <div ref={wrap} className="relative hidden md:block" style={{ height: `calc(100vh + ${dist}px)` }}>
         <div className="sticky top-0 flex h-screen flex-col overflow-hidden pb-8 pt-24">
-          {head}
+          {head()}
           <motion.div ref={track} style={{ x }} {...bind} className="mt-8 flex min-h-0 flex-1 gap-5 px-10 md:cursor-none" data-testid="projects-track">
             {list.map((p, i) => <Card key={p.name} p={p} i={i} wide={i % 3 === 0} onOpen={() => open(p)} className={i % 3 === 0 ? "w-[44vw]" : "w-[27vw]"} />)}
           </motion.div>
@@ -79,9 +79,9 @@ export const Projects = () => {
         </div>
       </div>
       <div className="py-20 md:hidden">
-        {head}
+        {head("-mobile")}
         <div className="no-scrollbar mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5" data-lenis-prevent>
-          {list.map((p, i) => <Card key={p.name} p={p} i={i} wide={false} onOpen={() => open(p)} className="h-[62vh] w-[80vw] snap-start" />)}
+          {list.map((p, i) => <Card key={p.name} p={p} i={`m-${i}`} wide={false} onOpen={() => open(p)} className="h-[62vh] w-[80vw] snap-start" />)}
         </div>
       </div>
     </section>

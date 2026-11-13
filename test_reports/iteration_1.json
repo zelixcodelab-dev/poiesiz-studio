@@ -1,0 +1,54 @@
+{
+  "summary": "Frontend-only test of POIESIZ SHFT-style redesign. Verified Hero, pinned Process (how-section), horizontal filmstrip Projects, closing Contact/Centres section, Project Detail, Price Calculator and mobile layouts. Submitted consultation form end-to-end (enquiry toast + success state shown). All required data-testids are present and the SHFT-like motion (sticky steps, horizontal projects track, revealed big headline) is functional.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Centres / Contact details (Centres.jsx:38)",
+        "issue": "React 'duplicate key' warning when seeded phones array has two identical numbers (default seed has '+91 00000 00000' twice). key={p} should be key={`${p}-${i}`} or use index as fallback.",
+        "selector": "[data-testid=\"contact-card\"] [data-testid^=\"contact-phone-\"]",
+        "priority": "LOW"
+      },
+      {
+        "component": "Projects (Projects.jsx)",
+        "issue": "Both desktop (hidden md:block) and mobile (md:hidden) subtrees are mounted, so data-testid 'projects-title' and every 'projects-filter-*' id appear twice in the DOM at the same time (count=2). Works visually due to CSS, but duplicate test ids reduce test determinism.",
+        "selector": "[data-testid=\"projects-title\"], [data-testid^=\"projects-filter-\"]",
+        "priority": "LOW"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix duplicate React key in Centres.jsx phone list (use index-based key).",
+    "Consider conditionally rendering only one of the desktop/mobile Projects subtrees (or scope testids) to avoid duplicate data-testid='projects-title' / 'projects-filter-*' nodes.",
+    "(Not tested) Admin edits on 'How it works' per-step photo/outcome and 'Contact details' kicker/closing fields — main agent can self-verify via admin UI."
+  ],
+  "critical_code_review_comments": [
+    "Centres.jsx:38 uses phone string as React key which breaks when phones repeat.",
+    "Projects.jsx renders both desktop and mobile sections unconditionally; duplicate data-testid='projects-title' and projects-filter-* ids make it harder for tests to target a specific instance.",
+    "ProjectDetail slug for apostrophes produces '-s-' segment (e.g. actor-indrajith-sukumaran-s-residence). Works but visually odd; consider stripping apostrophes before slugifying."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "~95%"},
+  "test_credentials": "admin@poiesizinteriors.com / Poiesiz@2e9955 (not used in this run)",
+  "seed_data_creation": "Submitted 1 consultation enquiry as TEST_User_<timestamp> via public form at /#consult. No DB admin cleanup performed (public form, no exposed delete endpoint).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Default content (9 projects) only renders when /api/content lacks a 'projects' key. In live app it has 1 real project ('Actor Indrajith Sukumaran's Residence' -> slug 'actor-indrajith-sukumaran-s-residence'). To test filmstrip horizontal motion, intercept /api/content and delete 'projects'. The how-counter advances 01->04 only when scrolling with mouse.wheel (Lenis smooth scroll); window.scrollTo + small waits doesn't trigger the framer scroll progress, use page.mouse.wheel with small steps. Projects track x went 0 -> -3925 confirming horizontal filmstrip. Full-page intro curtain lasts ~3s on first load per session — wait 4-5s after goto.",
+  "verified_features": [
+    "hero-section full viewport (1080px at 1920x1080)",
+    "hero-headline, hero-eyebrow, hero-sub, hero-scroll-down, hero-link-process, hero-link-work",
+    "hero-quote-btn opens BookDialog",
+    "process section: how-section, how-title, how-counter (01/04 -> 04/04 as you scroll), how-frame, how-step-0..3",
+    "mobile how-mobile-step-0..3 render stacked",
+    "projects-section, projects-title, projects-track with horizontal translation on scroll (-3925px observed)",
+    "projects-filter-* (6 filters), 9 default project-card-* each duplicated for infinite look",
+    "contact section testids: centres-section, contact-kicker, contact-big-title (visible on scroll), contact-book-btn, contact-link-top/process/work, contact-photos, contact-card, contact-email, contact-map, contact-form-card (id=consult)",
+    "Consultation form submit -> success state 'Your request is in.' + toast",
+    "/projects/actor-indrajith-sukumaran-s-residence shows project-detail-page, project-title, project-back-link, project-hero-image, project-description, project-gallery, project-fact-type/location/status, lightbox opens on cover click",
+    "/price-calculator shows calc-headline + calc-progress-* + calc-next-btn",
+    "Nav includes PROCESS link that scrolls to #process"
+  ]
+}

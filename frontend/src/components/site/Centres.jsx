@@ -35,7 +35,7 @@ const row = "flex gap-4 border-b border-[#CFC8BA] py-4";
 const Details = ({ c }) => (
   <div className="flex flex-col" data-testid="contact-card">
     <div className={row}><MapPin className="mt-1 h-4 w-4 shrink-0 text-[#50321F]" /><p data-testid="contact-address">{c.address}</p></div>
-    <div className={row}><Phone className="mt-1 h-4 w-4 shrink-0 text-[#50321F]" /><div className="flex flex-col">{list(c.phones).map((p, i) => <a key={p} href={`tel:${p.replace(/\s/g, "")}`} className="link-line w-fit" data-testid={`contact-phone-${i}`}>{p}</a>)}</div></div>
+    <div className={row}><Phone className="mt-1 h-4 w-4 shrink-0 text-[#50321F]" /><div className="flex flex-col">{list(c.phones).map((p, i) => <a key={`${p}-${i}`} href={`tel:${p.replace(/\s/g, "")}`} className="link-line w-fit" data-testid={`contact-phone-${i}`}>{p}</a>)}</div></div>
     <div className={row}><Mail className="mt-1 h-4 w-4 shrink-0 text-[#50321F]" /><a href={`mailto:${c.email}`} className="link-line w-fit break-all" data-testid="contact-email">{c.email}</a></div>
     <div className={row}><Globe className="mt-1 h-4 w-4 shrink-0 text-[#50321F]" /><a href={`https://${c.website}`} target="_blank" rel="noreferrer" className="link-line w-fit" data-testid="contact-website">{c.website}</a></div>
     <iframe title="POIESIZ Interiors location" src={`https://www.google.com/maps?q=${encodeURIComponent(c.mapQuery || c.address || "")}&output=embed`} className="mt-6 h-[260px] w-full rounded-[20px] border-0 grayscale" loading="lazy" data-testid="contact-map" />

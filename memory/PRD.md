@@ -42,6 +42,16 @@ React (CRA) frontend only. framer-motion, lenis, shadcn accordion/dialog, sonner
 - Content stored as per-section overrides in Mongo `site_content`; site falls back to built-in defaults; "Restore original" per section
 - Price calculator page content/rates not yet editable from admin
 
+## Implemented (2026-11-13, iteration 10) — SHFT template layout + motion (Slider Revolution / Dribbble 27268209)
+- User choices: keep cream/brown palette, keep all sections restyled, whole site matches
+- Hero: full-screen photo, huge stacked headline (last line indented), hairline bar with [scroll down], intro, "Get a quote" (opens booking), our process / our work links. Consult form moved to contact section (#consult)
+- Process (#process, HowItWorks.jsx): pinned while scrolling on desktop; step list highlight, photo wipe-up, 01/04 counter, progress line; mobile = stacked photo cards. Steps now have outcome + photo (admin)
+- Projects: pinned horizontal filmstrip on desktop (cards scroll sideways with scroll + progress bar), native swipe row on mobile
+- Contact (#studios): kicker, giant word-reveal closing headline, Start your project CTA, [go on top]/[process]/[work], photo row (hover widens), details + map + consult form. Admin fields: kicker, bigTitle, photos
+- Bracketed lowercase eyebrows + hairlines under every section heading; uppercase nav with Process link
+- Project pages: full-screen cover with huge title + bracket facts; calculator: bigger headline + hairline
+- Note: DB currently holds only 1 saved project, so the filmstrip only moves once more projects are added; saved section order still has Contact before FAQ (admin can reorder)
+
 ## Implemented (2026-11-13, iteration 9) — Google reviews section
 - Home section `reviews` (Reviews.jsx), placed after "Why choose us"; admin page "Google reviews" (content key `reviews`)
 - Reviews are added by hand in admin (no live Google sync, per user choice); only 4–5 star reviews show; section hidden until one exists
