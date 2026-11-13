@@ -48,6 +48,13 @@ export const SCHEMA = [
     t("eyebrow", "Small heading"), t("title", "Title"), t("image", "Big card photo", "image"),
     { name: "items", label: "Reasons", type: "list", itemLabel: "title", fields: [t("title", "Title"), t("text", "Text", "textarea")] },
   ] },
+  { key: "reviews", label: "Google reviews", hint: "Copy reviews from your Google Business profile. Only 4 and 5 star reviews appear on the site, and the section stays hidden until you add one.", fields: [
+    t("eyebrow", "Small heading"), t("title", "Title"), t("sub", "Intro (optional)", "textarea"),
+    t("rating", "Overall Google rating (e.g. 4.9) — leave empty to hide the rating badge"), t("count", "Total number of Google reviews (e.g. 48)"),
+    { name: "items", label: "Reviews", type: "list", itemLabel: "name", fields: [
+      t("name", "Reviewer name"), t("rating", "Stars (1 to 5)"), t("date", "When (e.g. 2 months ago)"), t("text", "Review text", "textarea"),
+    ] },
+  ] },
   { key: "ongoing", label: "On-going projects", fields: [
     t("eyebrow", "Small heading"), t("title", "Title"), t("sub", "Intro", "textarea"),
     { name: "items", label: "Photos", type: "list", itemLabel: "label", fields: [t("img", "Photo", "image"), t("label", "Caption")] },

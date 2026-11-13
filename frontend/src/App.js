@@ -14,6 +14,7 @@ import { Featured } from "./components/site/Featured";
 import { Styles } from "./components/site/Styles";
 import { Vaastu } from "./components/site/Vaastu";
 import { WhyUs } from "./components/site/WhyUs";
+import { Reviews } from "./components/site/Reviews";
 import { Centres } from "./components/site/Centres";
 import { HowItWorks } from "./components/site/HowItWorks";
 import { Faq } from "./components/site/Faq";
@@ -27,21 +28,20 @@ import { useSeo } from "./lib/seo";
 import PriceCalculator from "./pages/PriceCalculator";
 import ProjectDetail from "./pages/ProjectDetail";
 import AdminApp from "./admin/AdminApp";
-import { ContentProvider, useContent, list } from "./lib/content";
-import { SECTION_LABELS } from "./data/defaults";
+import { ContentProvider, useContent } from "./lib/content";
+import { orderSections } from "./data/defaults";
 
 const SECTIONS = {
   marquee: Marquee, services: Services, projects: Projects, featured: Featured, trending: Trending, estimator: Estimator,
-  rooms: Rooms, styles: Styles, clients: Vaastu, why: WhyUs, ongoing: Ongoing, how: HowItWorks, contact: Centres, faq: Faq,
+  rooms: Rooms, styles: Styles, clients: Vaastu, why: WhyUs, reviews: Reviews, ongoing: Ongoing, how: HowItWorks, contact: Centres, faq: Faq,
 };
 
 const Home = ({ onBook }) => {
-  const saved = list(useContent("sections").items).filter((s) => SECTIONS[s?.id]);
-  const missing = Object.keys(SECTION_LABELS).filter((id) => !saved.some((s) => s.id === id)).map((id) => ({ id, visible: true }));
+  const sections = orderSections(useContent("sections").items).filter((s) => SECTIONS[s.id]);
   return (
     <main>
       <Hero />
-      {[...saved, ...missing].filter((s) => s.visible !== false).map((s) => {
+      {sections.filter((s) => s.visible !== false).map((s) => {
         const C = SECTIONS[s.id];
         return <C key={s.id} onBook={onBook} />;
       })}

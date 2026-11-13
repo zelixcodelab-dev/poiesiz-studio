@@ -4,7 +4,7 @@ import { ArrowUp, ArrowDown, Trash2, Plus, Upload, Loader2, Eye, EyeOff, Chevron
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { api, asset, errText } from "../lib/api";
-import { SECTION_LABELS } from "../data/defaults";
+import { SECTION_LABELS, orderSections } from "../data/defaults";
 
 const arr = (v) => (Array.isArray(v) ? v : []);
 const move = (a, i, d) => { const b = [...a]; const j = i + d; if (j < 0 || j >= b.length) return b; [b[i], b[j]] = [b[j], b[i]]; return b; };
@@ -97,8 +97,7 @@ const ListField = ({ field, value, onChange, tid }) => {
 };
 
 const SectionsField = ({ value, onChange, tid }) => {
-  const saved = arr(value).filter((s) => SECTION_LABELS[s?.id]);
-  const a = [...saved, ...Object.keys(SECTION_LABELS).filter((id) => !saved.some((s) => s.id === id)).map((id) => ({ id, visible: true }))];
+  const a = orderSections(value);
   return (
     <div className="space-y-2">
       <div className="rounded-xl border border-dashed border-zinc-300 px-3 py-2 text-xs text-zinc-500">Hero banner always shows first.</div>

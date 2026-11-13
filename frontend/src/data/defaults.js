@@ -4,7 +4,17 @@ import { TIERS, ROOM_ITEMS, KITCHEN_SHAPES, ADDONS } from "../lib/pricing";
 export const SECTION_LABELS = {
   marquee: "Scrolling words strip", services: "Services", projects: "Projects", featured: "Featured project",
   trending: "Trending ideas", estimator: "Cost estimator", rooms: "Ideas by room", styles: "Ideas by style",
-  clients: "Clients", why: "Why choose us", ongoing: "On-going projects", how: "How it works", contact: "Contact", faq: "FAQs",
+  clients: "Clients", why: "Why choose us", reviews: "Google reviews", ongoing: "On-going projects", how: "How it works", contact: "Contact", faq: "FAQs",
+};
+
+export const orderSections = (value) => {
+  const out = (Array.isArray(value) ? value : []).filter((s) => SECTION_LABELS[s?.id]);
+  Object.keys(SECTION_LABELS).forEach((id, i, ids) => {
+    if (out.some((s) => s.id === id)) return;
+    const at = out.findIndex((s) => s.id === ids[i - 1]);
+    out.splice(at + 1, 0, { id, visible: true });
+  });
+  return out;
 };
 
 const CLIENT_LOGOS = [
@@ -38,6 +48,7 @@ export const DEFAULTS = {
   styles: { eyebrow: "Ideas by style", title: "Find the mood that feels like you", items: STYLES, categories: CATEGORIES },
   clients: { eyebrow: "Our clients", title: "Trusted by names you know", items: CLIENT_LOGOS.map(([name, f]) => ({ name, logo: `/clients/${f}.png` })) },
   why: { eyebrow: "Why POIESIZ", title: "Trust built into every detail", image: "/projects/thrissur-courtyard.jpg", items: WHY },
+  reviews: { eyebrow: "Google reviews", title: "What our clients say", sub: "", rating: "", count: "", items: [] },
   ongoing: { eyebrow: "On-going projects", title: "On site right now", sub: "A look at work in progress across our current residential and commercial projects.", items: ONGOING },
   steps: { eyebrow: "How it works", title: "Four calm steps to a finished home", items: STEPS },
   faqs: { title: "Good questions, honest answers", items: FAQS },

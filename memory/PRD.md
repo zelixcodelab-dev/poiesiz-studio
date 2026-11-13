@@ -42,6 +42,13 @@ React (CRA) frontend only. framer-motion, lenis, shadcn accordion/dialog, sonner
 - Content stored as per-section overrides in Mongo `site_content`; site falls back to built-in defaults; "Restore original" per section
 - Price calculator page content/rates not yet editable from admin
 
+## Implemented (2026-11-13, iteration 9) — Google reviews section
+- Home section `reviews` (Reviews.jsx), placed after "Why choose us"; admin page "Google reviews" (content key `reviews`)
+- Reviews are added by hand in admin (no live Google sync, per user choice); only 4–5 star reviews show; section hidden until one exists
+- Overall rating + review count badge (hidden if rating empty)
+- Sections missing from a saved order are now inserted at their default position (orderSections in defaults.js)
+
+
 ## Implemented (2026-11-13, iteration 8) — SEO
 - Admin "SEO (Google search)" page: home title/description, keywords, calculator title/description, project title suffix (content key `seo`)
 - Per-route title + meta description/OG/Twitter updated client-side (lib/seo.js); project pages use project name + description
