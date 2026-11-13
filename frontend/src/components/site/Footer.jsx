@@ -25,11 +25,11 @@ export const Footer = ({ onBook, home = true }) => {
         </div>
         <div className="md:col-span-5">
           <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-[#FEBD1C]">Interior designers in & around</p>
-          <div className="grid grid-cols-2 gap-2 text-sm">{list(ft.cities).map((c) => <a key={c} href={home ? "#consult" : "/#consult"} className="transition-colors duration-300 hover:text-white" data-testid={`footer-city-${c.toLowerCase()}`}>{c}</a>)}</div>
+          <div className="grid grid-cols-2 gap-2 text-sm">{list(ft.cities).map((c) => <a key={c} href={home ? "#consult" : "/#consult"} className="link-line w-fit transition-colors duration-300 hover:text-white" data-testid={`footer-city-${c.toLowerCase()}`}>{c}</a>)}</div>
         </div>
         <div className="md:col-span-3">
           <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-[#FEBD1C]">Explore</p>
-          <div className="flex flex-col gap-2 text-sm"><Link to="/price-calculator" className="transition-colors duration-300 hover:text-white" data-testid="footer-link-calculator">Price calculator</Link>
+          <div className="flex flex-col gap-2 text-sm"><Link to="/price-calculator" className="link-line w-fit transition-colors duration-300 hover:text-white" data-testid="footer-link-calculator">Price calculator</Link>
             {[["Trending ideas", "#ideas"], ["Projects", "#projects"], ["Services", "#services"], ["Contact", "#studios"], ["FAQs", "#faq"]].map(([l, h]) => <a key={h} href={home ? h : `/${h}`} className="transition-colors duration-300 hover:text-white" data-testid={`footer-link-${h.slice(1)}`}>{l}</a>)}</div>
         </div>
       </div>

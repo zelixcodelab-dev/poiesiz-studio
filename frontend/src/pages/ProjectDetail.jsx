@@ -72,7 +72,7 @@ export default function ProjectDetail({ onBook }) {
           <div className="mt-14 columns-1 gap-4 sm:columns-2 lg:columns-3" data-testid="project-gallery">
             {imgs.slice(1).map((src, i) => (
               <Reveal key={src + i} delay={(i % 3) * 0.06} className="mb-4 break-inside-avoid">
-                <button onClick={() => setOpen(i + 1)} className="block w-full overflow-hidden rounded-[20px]" data-testid={`project-gallery-item-${i}`}>
+                <button onClick={() => setOpen(i + 1)} className="reveal-img block w-full overflow-hidden rounded-[20px]" data-testid={`project-gallery-item-${i}`}>
                   <img src={asset(src)} alt={`${p.name} photo ${i + 2}`} className="w-full object-cover transition-transform duration-[1.2s] hover:scale-105" />
                 </button>
               </Reveal>

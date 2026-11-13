@@ -23,7 +23,7 @@ export const Projects = () => {
         <motion.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((p, i) => (
             <motion.article layout key={p.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, delay: (i % 3) * 0.08 }} className="group cursor-pointer" onClick={() => nav(`/projects/${slug(p.name)}`)} data-testid={`project-card-${i}`}>
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[22px]" style={{ clipPath: "inset(0 round 22px)" }}>
+              <div className="reveal-img relative aspect-[4/5] overflow-hidden rounded-[22px]">
                 <img src={asset(p.img)} alt={p.name} className="h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-110" />
                 {p.place && <span className="absolute left-4 top-4 flex items-center gap-1 rounded-full bg-[#FBF9F5]/90 px-3 py-1.5 text-xs text-[#1A1918] backdrop-blur"><MapPin className="h-3 w-3" />{p.place}</span>}
                 <span className={`absolute right-4 top-4 rounded-full px-3 py-1.5 text-xs backdrop-blur ${p.status === "On-going" ? "bg-[#FEBD1C] text-[#111111]" : "bg-[#1A1918]/70 text-[#FBF9F5]"}`}>{p.status}</span>

@@ -17,6 +17,25 @@ html.lenis, html.lenis body { height: auto; }
 
 ::selection { background: #FEBD1C; color: #111111; }
 
+.reveal-ready .reveal-img:not(.is-in) { clip-path: inset(100% 0 0 0); }
+.reveal-img { transition: clip-path 1.3s cubic-bezier(0.76, 0, 0.24, 1); }
+.reveal-img img { transition: transform 1.6s cubic-bezier(0.22, 1, 0.36, 1), scale 1.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.reveal-ready .reveal-img:not(.is-in) img { scale: 1.18; }
+
+.link-line { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 0.5s cubic-bezier(0.76, 0, 0.24, 1), color 0.3s; padding-bottom: 2px; }
+.link-line:hover { background-size: 100% 1px; }
+
+.btn-roll { position: relative; overflow: hidden; }
+.btn-roll > .roll-a, .btn-roll > .roll-b { display: inline-flex; align-items: center; gap: 0.5rem; transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1); }
+.btn-roll > .roll-b { position: absolute; inset: 0; justify-content: center; transform: translateY(110%); }
+.btn-roll:hover > .roll-a { transform: translateY(-110%); }
+.btn-roll:hover > .roll-b { transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready .reveal-img:not(.is-in) { clip-path: none; }
+  .reveal-ready .reveal-img:not(.is-in) img { scale: 1; }
+}
+
 [class~="bg-[#FEBD1C]"] { color: #111111 !important; }
 
 .grain { position: relative; }

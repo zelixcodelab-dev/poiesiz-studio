@@ -21,14 +21,14 @@ export const Nav = ({ onBook, home = true }) => {
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 md:h-20 md:px-10">
         <Logo light={!solid} />
         <nav className="hidden items-center gap-8 lg:flex">
-          <Link to="/price-calculator" className={`text-sm transition-colors duration-300 hover:text-[#8A6200] ${solid ? "text-[#1A1918]" : "text-[#FBF9F5]"}`} data-testid="nav-link-calculator">Price Calculator</Link>
+          <Link to="/price-calculator" className={`link-line text-sm transition-colors duration-300 hover:text-[#8A6200] ${solid ? "text-[#1A1918]" : "text-[#FBF9F5]"}`} data-testid="nav-link-calculator">Price Calculator</Link>
           {LINKS.map(([l, h]) => (
-            <a key={h} href={h} className={`text-sm transition-colors duration-300 hover:text-[#8A6200] ${solid ? "text-[#1A1918]" : "text-[#FBF9F5]"}`} data-testid={`nav-link-${l.toLowerCase()}`}>{l}</a>
+            <a key={h} href={h} className={`link-line text-sm transition-colors duration-300 hover:text-[#8A6200] ${solid ? "text-[#1A1918]" : "text-[#FBF9F5]"}`} data-testid={`nav-link-${l.toLowerCase()}`}>{l}</a>
           ))}
         </nav>
         <div className="flex items-center gap-3">
           <a href="tel:+919961775580" className={`hidden text-sm font-medium transition-colors duration-300 hover:text-[#FEBD1C] xl:block ${solid ? "text-[#1A1918]" : "text-white"}`} data-testid="nav-phone-link">+91 99617 75580</a>
-          <button onClick={onBook} className="hidden rounded-full bg-[#FEBD1C] px-5 py-2.5 text-sm font-medium text-white transition-colors duration-300 hover:bg-[#F0AC00] sm:block" data-testid="nav-book-btn">Book Free Consultation</button>
+          <button onClick={onBook} className="btn-roll hidden rounded-full bg-[#FEBD1C] px-5 py-2.5 text-sm font-medium text-white transition-colors duration-300 hover:bg-[#F0AC00] sm:block" data-testid="nav-book-btn"><span className="roll-a">Book Free Consultation</span><span className="roll-b" aria-hidden="true">Book Free Consultation</span></button>
           <button onClick={() => setOpen(!open)} className={`flex h-11 w-11 items-center justify-center rounded-full lg:hidden ${solid ? "text-[#1A1918]" : "text-white"}`} aria-label="Menu" data-testid="nav-mobile-toggle">
             {open ? <X /> : <Menu />}
           </button>

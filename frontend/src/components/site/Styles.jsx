@@ -12,7 +12,7 @@ export const Styles = () => {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {list(d.items).map((s, i) => (
           <Reveal key={s.name} delay={i * 0.08}>
-            <a href="#consult" className="group relative block aspect-[3/4] overflow-hidden rounded-[22px]" data-testid={`style-card-${i}`}>
+            <a href="#consult" className="reveal-img group relative block aspect-[3/4] overflow-hidden rounded-[22px]" data-testid={`style-card-${i}`}>
               <img src={asset(s.img)} alt={s.name} className="h-full w-full object-cover transition-transform duration-[1.4s] group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#121212]/85 via-[#121212]/10 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5">

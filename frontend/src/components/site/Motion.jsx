@@ -37,11 +37,21 @@ export const Eyebrow = ({ children, light }) => (
   <p className={`font-mono text-xs uppercase tracking-[0.22em] ${light ? "text-[#FEBD1C]" : "text-[#8A6200]"}`}>{children}</p>
 );
 
+const Words = ({ text }) => (
+  <>
+    {String(text).split(" ").map((w, i) => (
+      <span key={i} className="inline-block overflow-hidden pb-[0.1em] align-bottom">
+        <motion.span className="inline-block" initial={{ y: "105%" }} whileInView={{ y: "0%" }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.9, delay: i * 0.06, ease }}>{w}&nbsp;</motion.span>
+      </span>
+    ))}
+  </>
+);
+
 export const SectionHead = ({ eyebrow, title, sub, light, right }) => (
   <Reveal className="mb-10 flex flex-col gap-6 md:mb-14 md:flex-row md:items-end md:justify-between">
     <div className="max-w-2xl space-y-4">
       <Eyebrow light={light}>{eyebrow}</Eyebrow>
-      <h2 className={`font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl ${light ? "text-[#FBF9F5]" : "text-[#1A1918]"}`}>{title}</h2>
+      <h2 className={`font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl ${light ? "text-[#FBF9F5]" : "text-[#1A1918]"}`}>{typeof title === "string" ? <Words text={title} /> : title}</h2>
       {sub && <p className={`text-base md:text-lg ${light ? "text-[#D9D3C7]" : "text-[#6E6B65]"}`}>{sub}</p>}
     </div>
     {right}

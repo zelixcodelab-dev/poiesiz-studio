@@ -21,6 +21,8 @@ import { Footer } from "./components/site/Footer";
 import { Services } from "./components/site/Services";
 import { Ongoing } from "./components/site/Ongoing";
 import { BookDialog } from "./components/site/BookDialog";
+import { Intro, RouteCurtain, useImageReveal } from "./components/site/Transitions";
+import { motion } from "framer-motion";
 import PriceCalculator from "./pages/PriceCalculator";
 import ProjectDetail from "./pages/ProjectDetail";
 import AdminApp from "./admin/AdminApp";
@@ -66,15 +68,21 @@ const Shell = () => {
     return () => clearTimeout(t);
   }, [pathname, hash]);
 
+  useImageReveal(pathname);
+
   return (
     <div className="grain bg-[#FBF9F5] font-body text-[#1A1918]">
+      <Intro />
+      <RouteCurtain k={pathname} />
       <Nav onBook={book} home={home} />
+      <motion.div key={pathname} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}>
       <Routes>
         <Route path="/" element={<Home onBook={book} />} />
         <Route path="/price-calculator" element={<PriceCalculator onBook={book} />} />
         <Route path="/projects/:slug" element={<ProjectDetail onBook={book} />} />
         <Route path="*" element={<Home onBook={book} />} />
       </Routes>
+      </motion.div>
       <Footer onBook={book} home={home} />
       <BookDialog open={open} onOpenChange={setOpen} />
       <Toaster position="top-center" richColors />

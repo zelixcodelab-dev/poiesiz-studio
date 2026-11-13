@@ -15,7 +15,7 @@ export const Services = () => {
           <Eyebrow>{d.eyebrow}</Eyebrow>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-[#1A1918] sm:text-4xl lg:text-5xl">{d.title} <span className="font-serif-it font-normal italic">{d.titleAccent}</span></h2>
           <p className="text-[#6E6B65] md:text-lg">{d.sub}</p>
-          <div className="relative mt-4 aspect-[4/5] max-w-sm overflow-hidden rounded-[24px] bg-[#FEBD1C]">
+          <div className="reveal-img relative mt-4 aspect-[4/5] max-w-sm overflow-hidden rounded-[24px] bg-[#FEBD1C]">
             {d.image && <img src={asset(d.image)} alt="" className="h-full w-full object-cover" />}
           </div>
         </div>

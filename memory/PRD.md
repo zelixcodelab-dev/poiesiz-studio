@@ -42,6 +42,13 @@ React (CRA) frontend only. framer-motion, lenis, shadcn accordion/dialog, sonner
 - Content stored as per-section overrides in Mongo `site_content`; site falls back to built-in defaults; "Restore original" per section
 - Price calculator page content/rates not yet editable from admin
 
+## Implemented (2026-11-13, iteration 6) — Motion & transitions (inspired by Dribbble Poliform shot, which is a static image)
+- First-visit intro curtain (logo + 0–100 counter, slides up; once per session)
+- Yellow page-change curtain wipe + content fade-up on every route change
+- Images unveil with a bottom-up wipe + slow zoom-out as they scroll into view (projects, trending, styles, on-going, services, project galleries)
+- Section headings reveal word by word; nav/footer links get a sliding underline; header CTA text rolls on hover
+- Respects reduced-motion setting
+
 ## Implemented (2026-11-12, iteration 5)
 - Price calculator rates editable in admin ("Price calculator rates"): finish levels (multiplier, features), rooms (base price in lakhs, max qty), kitchen layouts, add-ons (₹/sq ft or fixed lakhs), note
 - Enquiry inbox: booking forms POST /api/enquiries (validated); admin "Enquiries inbox" with call button, status New/Called/Closed, notes, archive (soft)

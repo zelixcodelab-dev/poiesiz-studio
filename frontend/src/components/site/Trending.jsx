@@ -20,7 +20,7 @@ export const Trending = () => {
         {list(d.items).map((t, i) => (
           <Reveal key={t.title} delay={i * 0.06} className="w-[85vw] shrink-0 snap-start sm:w-[440px]">
             <article className="group" data-testid={`trending-card-${i}`}>
-              <div className="grid h-[340px] grid-cols-3 grid-rows-2 gap-2 overflow-hidden rounded-[22px]">
+              <div className="reveal-img grid h-[340px] grid-cols-3 grid-rows-2 gap-2 overflow-hidden rounded-[22px]">
                 <div className="col-span-2 row-span-2 overflow-hidden"><img src={asset(list(t.imgs)[0])} alt={t.title} className="h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-105" /></div>
                 <div className="overflow-hidden"><img src={asset(list(t.imgs)[1])} alt="" className="h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-110" /></div>
                 <div className="overflow-hidden"><img src={asset(list(t.imgs)[2])} alt="" className="h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-110" /></div>
